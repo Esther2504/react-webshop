@@ -1,0 +1,31 @@
+import { createGlobalStyle } from "styled-components";
+
+
+export const GlobalStyle = createGlobalStyle`
+
+html {
+  width: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    box-sizing: border-box; 
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+box-sizing: border-box;   
+padding-bottom: 10rem;
+max-width: 100%;
+}
+
+button {
+    cursor: pointer;
+    background-color: #49abcc;
+    border: 1px solid white;
+    color: white;
+  }
+`
