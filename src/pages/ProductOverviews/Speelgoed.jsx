@@ -8,6 +8,7 @@ import { useState } from 'react';
 // Other imports
 import styled from 'styled-components';
 import data from '../../products.json';
+import colors from '../../styles/colors.jpg';
 
 function Product() {
   const [sorting, setSorting] = useState()
@@ -45,7 +46,7 @@ function Product() {
 
   return (
     <Wrapper>
-      <p className="breadcrumbs"><Link to="/">Home</Link> <img src="../images/right-arrow.svg" /> <Link to="/producten">Producten</Link> <img src="../images/right-arrow.svg" /> Speelgoed</p>
+      <p className="breadcrumbs"><Link to="/">Home</Link> <img src={process.env.PUBLIC_URL + "/images/right-arrow.svg"} /> <Link to="/producten">Producten</Link> <img src={process.env.PUBLIC_URL + "/images/right-arrow.svg"} /> Speelgoed</p>
       <div className="content">
       <div className='filters'>
         <div>
@@ -76,7 +77,7 @@ function Product() {
         <button style={{ backgroundColor: "orange" }} onClick={() => setColor("oranje")}></button>
         <button style={{ backgroundColor: "pink" }} onClick={() => setColor("roze")}></button>
         <button style={{ backgroundColor: "purple" }} onClick={() => setColor("paars")}></button>
-        <button className='all-colors' onClick={() => setColor("")}></button>
+        <button style={{ background: `url(${colors})`, backgroundSize: "3rem" }} onClick={() => setColor("")}></button>
       </div>
       </div>
       </div>
@@ -86,7 +87,7 @@ function Product() {
             <div className="product" key={Math.random()}>
               <Link to={`product${product.id}`}>
                 <div>
-                  <img alt={product.productname} src={`./images/products/${product.image1}`} />
+                  <img alt={product.productname} src={process.env.PUBLIC_URL + `/images/products/${product.image1}`} />
                   <h1>{product.productname}</h1>
                   <p>€{product.price}</p>
                 </div>
@@ -94,7 +95,7 @@ function Product() {
               <div>
               <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
                 <button onClick={() => dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` }))}>
-                  <img alt="winkelmandje" className="cart" src="./images/shopping-cart-add.svg" /> Bestel</button>
+                  <img alt="winkelmandje" className="cart" src={process.env.PUBLIC_URL + "/images/shopping-cart-add.svg"} /> Bestel</button>
               </div>
             </div>
           )
@@ -175,11 +176,6 @@ input {
       height: 1.8rem;
       border-radius: 1rem;
     }
-  }
-  
-  .all-colors {
-    background: url("images/colors.jpg");
-    background-size: 4rem;
   }
 }
 

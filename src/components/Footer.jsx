@@ -24,10 +24,10 @@ export default function Footer() {
       </div>
       <div className="social-media">
         <p>Wil je ons volgen?</p>
-        <img src="images\social-media\facebook.svg" />
-        <img src="images\social-media\instagram.svg" />
-        <img src="images\social-media\linkedin.svg" />
-        <img src="images\social-media\twitter.svg" />
+        <img src={process.env.PUBLIC_URL + "/images/social-media/facebook.svg"} />
+        <img src={process.env.PUBLIC_URL + "/images/social-media/instagram.svg"} />
+        <img src={process.env.PUBLIC_URL + "/images/social-media/linkedin.svg"} />
+        <img src={process.env.PUBLIC_URL + "/images/social-media/twitter.svg"} />
       </div>
     </Wrapper>
   )

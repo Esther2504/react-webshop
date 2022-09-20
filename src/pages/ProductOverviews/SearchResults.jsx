@@ -26,14 +26,14 @@ export default function SearchResults() {
             <div key={Math.random()} className="product">
               <Link to={`../${product.category}/product${product.id}`}>
                 <div className="product-info">
-                  <img alt={product.productname} className="img" src={`./images/products/${product.image1}`}></img>
+                  <img alt={product.productname} className="img" src={process.env.PUBLIC_URL + `/images/products/${product.image1}`}></img>
                   <h1>{product.productname}</h1>
                   <p>€{product.price}</p>
                 </div>
               </Link>
               <div>
                 <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
-                <button onClick={() => {dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1)}}><img alt="winkelmandje" className="cart" src="./images/shopping-cart-add.svg" /> Bestel</button>
+                <button onClick={() => {dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1)}}><img alt="winkelmandje" className="cart" src={process.env.PUBLIC_URL + "/images/shopping-cart-add.svg"} /> Bestel</button>
               </div>
             </div>
           )

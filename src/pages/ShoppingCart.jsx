@@ -48,7 +48,7 @@ export default function ShoppingCart() {
         </>
         :
         <div className="empty-cart">
-          <img src="images/empty-cart-image.png" />
+          <img src={process.env.PUBLIC_URL + "images/empty-cart-image.png"} />
           <h1>Je winkelwagen is leeg</h1>
           <Link to="/producten"><button>Verder winkelen</button></Link>
         </div>
@@ -65,7 +65,7 @@ export function Product({ id, amount }) {
       {data.map((product) =>
         product.id === `${id}` ? (
           <div key={Math.random()} className="product">
-            <img alt={product.productname} className="img" src={`./images/products/${product.image1}`} />
+            <img alt={product.productname} className="img" src={process.env.PUBLIC_URL + `/images/products/${product.image1}`} />
             <div className="product-info">
               <Link to={`../${product.category}/product${product.id}`}>
                 <h2>{product.productname}</h2>
