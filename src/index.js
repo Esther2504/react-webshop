@@ -16,7 +16,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 
 // Router imports
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Manden from './pages/ProductOverviews/Manden.jsx';
 import Speelgoed from './pages/ProductOverviews/Speelgoed.jsx';
 import HomePage from './pages/HomePage';
@@ -42,7 +42,7 @@ let persistor = persistStore(store);
 root.render( 
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
     <ScrollToTop />
     <ToastContainer position="bottom-right" hideProgressBar={true} autoClose={1500} newestOnTop={true}/>
     <PersistGate loading={null} persistor={persistor}>
@@ -73,7 +73,7 @@ root.render(
         <Route path="*" element={<NotFound />} />
         </Route>
     </Routes>
-    </BrowserRouter>
+    </HashRouter>
     </Provider>
   </React.StrictMode>
 );

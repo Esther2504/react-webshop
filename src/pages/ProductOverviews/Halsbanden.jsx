@@ -1,9 +1,8 @@
 // React, Router & Redux imports
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../utils/cartReducer';
-import { useState } from 'react';
 
 // Other imports
 import styled from 'styled-components';

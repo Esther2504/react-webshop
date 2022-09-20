@@ -6,7 +6,7 @@ export default function NotFound() {
     <Wrapper>
     <h1>404</h1>
     <h2>Pagina niet gevonden</h2>
-    <img src={process.env.PUBLIC_URL + "images/empty-cart-image.png"} />
+    <img src={process.env.PUBLIC_URL + "/images/empty-cart-image.png"} />
     </Wrapper>
   )
 }
