@@ -23,4 +23,12 @@ export default function NotFound() {
 
 const Wrapper = styled.div`
 text-align: center;
+
+@media only screen and (max-width: 870px) {
+  padding-bottom: 15rem;
+
+  img {
+    width: 80%;
+  }
+}
 `

@@ -111,10 +111,10 @@ hr {
 
 .clearcart {
   align-self: flex-end;
-position: relative;
-right: 13.5rem;
-top: 1rem;
-border-style: none;
+  position: relative;
+  right: 13.5rem;
+  top: 1rem;
+  border-style: none;
   background-color: #49abcc;
   color: white;
   cursor: pointer;
@@ -176,6 +176,13 @@ padding-bottom: 13rem;
 .clearcart {
 right: 0;
 align-self: center;
+}
+
+.empty-cart {
+  text-align: center;
+img {
+  width: 80%;
+}
 }
   }
 `
