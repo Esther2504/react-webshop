@@ -1,6 +1,7 @@
+
 // React, Router & Redux imports
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { addProduct } from '../../utils/cartReducer'
 
@@ -10,49 +11,54 @@ import data from '../../products.json';
 
 // Import all images
 function importAll(r) {
-  let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  return images;
+    let images = {};
+    r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images;
 }
-
 const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
 const productimages = importAll(require.context('../../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
-export default function Product23() {
-  const [slide, setSlide] = useState(productimages[data[5].image1])
-  const dispatch = useDispatch();
+export default function ProductDetails() {
+    const [slide, setSlide] = useState("1")
+    const dispatch = useDispatch();
 
-  let amount = 1
+    let amount = 1
 
- const nextSlide = () => {
-    if (slide == productimages[data[5].image1]) {
-      setSlide(productimages[data[5].image2])
-    } else {
-      setSlide(productimages[data[5].image1])
+    const { product } = useParams();
+    const item = data.find(item => item.id === product);
+
+    console.log(item.id)
+    console.log(productimages[item[`image${slide}`]])
+
+    const nextSlide = () => {
+        if (slide === "1") {
+            setSlide("2")
+        } else {
+            setSlide("1")
+        }
     }
-  }
 
-  return (
-    <Wrapper>
-      <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${data[5].category}`}>Speelgoed</Link> <img alt="" src={images['right-arrow.svg']} /> {data[5].productname}</p>
-      <div className="container">
-      <div className="slide-container">
-      <div className="slide-images">
-      <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
-      <img alt="product" src={slide} />
-      <img alt="pijl rechts" className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
-      </div>
-      <p onClick={nextSlide}>● ●</p></div>
-      <div className="product-info">
-      <h1>{data[5].productname}</h1>
-      <h2>€{data[5].price}</h2>
-      <p>{data[5].description}</p>
-      <input min="1" placeholder="1" onChange={(e) => amount = e.target.value} type="number" />
-      <button onClick={() => dispatch(addProduct({ id: `${data[5].id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
-      </div>
-      </div>
-    </Wrapper>
-  )
+    return (
+        <Wrapper>
+            <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item.category}`}>{item.category[0].toUpperCase() + item.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item.productname}</p>
+            <div className="container">
+                <div className="slide-container">
+                    <div className="slide-images">
+                        <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
+                        <img alt="product" src={productimages[item[`image${slide}`]]} />
+                        <img alt="pijl rechts" className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
+                    </div>
+                    <p onClick={nextSlide}>● ●</p></div>
+                <div className="product-info">
+                    <h1>{item.productname}</h1>
+                    <h2>€{item.price}</h2>
+                    <p>{item.description}</p>
+                    <input min="1" placeholder="1" onChange={(e) => amount = e.target.value} type="number" />
+                    <button onClick={() => dispatch(addProduct({ id: `${item.id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
+                </div>
+            </div>
+        </Wrapper>
+    )
 }
 
 const Wrapper = styled.div`

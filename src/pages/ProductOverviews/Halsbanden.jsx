@@ -93,7 +93,7 @@ function Product() {
         {filteredData.map((product) =>
           product.category === "halsbanden" && product.price >= parseInt(minprice) && product.price <= parseInt(maxprice) ? (
             <div className="product" key={Math.random()}>
-              <Link to={`product${product.id}`}>
+              <Link to={`${product.id}`}>
                 <div>
                   <img alt={product.productname} src={productimages[product.image1]} />
                   <h1>{product.productname}</h1>

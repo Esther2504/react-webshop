@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Persist imports
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
+import { useParams } from 'react-router-dom';
 
 // Router imports
 import { HashRouter, Routes, Route } from 'react-router-dom';
@@ -36,6 +37,7 @@ import Login from './pages/Login';
 import { ProductOverview } from './pages/ProductOverviews/ProductOverview.jsx';
 import SearchResults from './pages/ProductOverviews/SearchResults';
 import NotFound from './pages/NotFound';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let persistor = persistStore(store);
@@ -55,19 +57,21 @@ root.render(
         <Route path="/producten" element={<ProductOverview />} />
 
         <Route path="/manden" element={<Manden />} />
-        <Route path="/manden/product11" element={<Product11 />} />
+        <Route path="/manden/:product" element={<ProductDetails />} />
+        {/* <Route path="/manden/product11" element={<Product11 />} />
         <Route path="/manden/product12" element={<Product12 />} />
-        <Route path="/manden/product13" element={<Product13 />} />
+        <Route path="/manden/product13" element={<Product13 />} /> */}
 
         <Route path="/speelgoed" element={<Speelgoed />} />
-        <Route path="/speelgoed/product21" element={<Product21 />} />
+        <Route path="/speelgoed/:product" element={<ProductDetails />} />
+        {/* <Route path="/speelgoed/product21" element={<Product21 />} />
         <Route path="/speelgoed/product22" element={<Product22 />} />
-        <Route path="/speelgoed/product23" element={<Product23 />} />
+        <Route path="/speelgoed/product23" element={<Product23 />} /> */}
 
         <Route path="/halsbanden" element={<Halsbanden />} />
-        <Route path="/halsbanden/product31" element={<Product31 />} />
-        <Route path="/halsbanden/product32" element={<Product32 />} />
-        <Route path="/halsbanden/product33" element={<Product33 />} />
+        <Route path="/halsbanden/:product" element={<ProductDetails />} />
+        // <Route path="/halsbanden/product32" element={<Product32 />} />
+        // <Route path="/halsbanden/product33" element={<Product33 />} /> 
 
         <Route path="/login" element={<Login />} />
         <Route path="/winkelwagen" element={<ShoppingCart />} />
