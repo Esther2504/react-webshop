@@ -40,7 +40,7 @@ export default function ProductDetails() {
 
     return (
         <Wrapper>
-            <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item?.category}`}>{item?.category[0].toUpperCase() + item.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item.productname}</p>
+            <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item?.category}`}>{item?.category[0].toUpperCase() + item?.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item.productname}</p>
             <div className="container">
                 <div className="slide-container">
                     <div className="slide-images">
