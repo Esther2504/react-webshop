@@ -7,7 +7,7 @@ import { addProduct } from '../../utils/cartReducer'
 
 // Overige imports
 import styled from 'styled-components'
-import data from '../../products.json';
+import data from "https://esther2504.github.io/react-webshop/products.json"
 
 // Import all images
 function importAll(r) {
@@ -26,9 +26,6 @@ export default function ProductDetails() {
 
     const { product } = useParams();
     const item = data.find(item => item.id === product);
-
-    console.log(item.id)
-    console.log(productimages[item[`image${slide}`]])
 
     const nextSlide = () => {
         if (slide === "1") {
