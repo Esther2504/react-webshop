@@ -8,6 +8,7 @@ import { addProduct } from '../../utils/cartReducer'
 // Overige imports
 import styled from 'styled-components'
 import data from '../../products.json';
+import { useEffect } from 'react';
 
 // Import all images
 function importAll(r) {
@@ -24,6 +25,8 @@ export default function ProductDetails() {
 
     let amount = 1
 
+    
+
     const { product } = useParams();
     const item = data.find(item => item.id === product);
 
@@ -37,7 +40,7 @@ export default function ProductDetails() {
 
     return (
         <Wrapper>
-            <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item.category}`}>{item.category[0].toUpperCase() + item.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item.productname}</p>
+            <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item?.category}`}>{item?.category[0].toUpperCase() + item.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item.productname}</p>
             <div className="container">
                 <div className="slide-container">
                     <div className="slide-images">
