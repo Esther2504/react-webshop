@@ -29,11 +29,12 @@ export default function Product11() {
       <div className="content">
       <div className="slide-container">
       <div className="slide-images">
-      <img className="slide-arrow" onClick={nextSlide} src={process.env.PUBLIC_URL + "/images/arrow-left.svg"} />
+      <img className="slide-arrow left" onClick={nextSlide} src={process.env.PUBLIC_URL + "/images/arrow-left.svg"} />
       <img src={process.env.PUBLIC_URL + slide} />
-      <img className="slide-arrow" onClick={nextSlide} src={process.env.PUBLIC_URL + "/images/arrow-right.svg"} />
+      <img className="slide-arrow right" onClick={nextSlide} src={process.env.PUBLIC_URL + "/images/arrow-right.svg"} />
       </div>
-      <p onClick={nextSlide}>● ●</p></div>
+      <p onClick={nextSlide}>● ●</p>
+      </div>
       <div className="product-info">
       <h1>{data[0].productname}</h1>
       <h2>€{data[0].price}</h2>
@@ -115,6 +116,7 @@ p {
 
   p {
     cursor: pointer;
+    font-style: normal;
   }
 }
 
@@ -141,10 +143,43 @@ p {
     text-align: center;
     width: 100%;
     margin-top: 1rem;
+    height: 100%;
+  }
+
+  .slide-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    justify-content: flex-start;
+
+    .slide-images {
+      width: 100%;
+    }
+
+    img {
+      width: 60%;
+      margin: auto;
+    }
+
+    .slide-arrow {
+      position: absolute;
+    }
+
+    .left {
+      top: 18rem;
+      left: 0;
+    }
+
+    .right {
+      top: 18rem;
+      right: 0;
+    }
   }
 
   .product-info {
-    margin-top: 0;  
+    margin-top: -3rem;
+    width: 100%;
   }
+ 
 }
 `
