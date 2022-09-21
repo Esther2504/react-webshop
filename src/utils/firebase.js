@@ -23,9 +23,9 @@ export const auth = getAuth(app);
 export const SignOut = () => {
    signOut(auth)
       .then(function () {
-         console.log('Signout Succesfull')
+         // console.log('Signout Succesfull')
       }, function (error) {
-         console.log('Signout Failed')
+         // console.log('Signout Failed')
       });
 }
 
@@ -33,11 +33,11 @@ export const googleSignIn = () => {
    const provider = new GoogleAuthProvider();
    signInWithPopup(auth, provider)
       .then((result) => {
-         console.log(result)
+         // console.log(result)
 
       })
       .catch((error) => {
-         console.log(error);
+         // console.log(error);
 
        
       })
@@ -78,7 +78,7 @@ export const signUp = (email, password) => {
       .then((userCredential) => {
          // Signed in 
          const user = userCredential.user;
-         console.log(user.email)
+         // console.log(user.email)
          //  alert("account created")
          // ...
       })

@@ -25,7 +25,7 @@ export default function Product13() {
   let amount = 1
 
  const nextSlide = () => {
-  console.log('click')
+  
     if (slide == productimages[data[2].image1]) {
       setSlide(productimages[data[2].image2])
     } else {
