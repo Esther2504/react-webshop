@@ -8,6 +8,16 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import data from '../products.json';
 
+// Import all images
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+
+const images = importAll(require.context('../assets/images', false, /\.(png|jpe?g|svg)$/));
+const productimages = importAll(require.context('../assets/images/products', false, /\.(png|jpe?g|svg)$/));
+
 export default function ShoppingCart() {
   const products = useSelector((state) => state.cart)
   const dispatch = useDispatch()
@@ -48,7 +58,7 @@ export default function ShoppingCart() {
         </>
         :
         <div className="empty-cart">
-          <img src={process.env.PUBLIC_URL + "/images/empty-cart-image.png"} />
+          <img src={images['empty-cart-image.png']} />
           <h1>Je winkelwagen is leeg</h1>
           <Link to="/producten"><button>Verder winkelen</button></Link>
         </div>
@@ -65,7 +75,7 @@ export function Product({ id, amount }) {
       {data.map((product) =>
         product.id === `${id}` ? (
           <div key={Math.random()} className="product">
-            <img alt={product.productname} className="img" src={process.env.PUBLIC_URL + `/images/products/${product.image1}`} />
+            <img alt={product.productname} className="img" src={productimages[product.image1]} />
             <div className="product-info">
               <Link to={`../${product.category}/product${product.id}`}>
                 <h2>{product.productname}</h2>

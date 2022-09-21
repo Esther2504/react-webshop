@@ -5,6 +5,15 @@ import { Link } from 'react-router-dom';
 // Other imports
 import styled from 'styled-components';
 
+// Import all images
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+
+const smimages = importAll(require.context('../assets/images/social-media', false, /\.(png|jpe?g|svg)$/));
+
 export default function Footer() {
   return (
     <Wrapper>
@@ -24,10 +33,10 @@ export default function Footer() {
       </div>
       <div className="social-media">
         <p>Wil je ons volgen?</p>
-        <img src={process.env.PUBLIC_URL + "/images/social-media/facebook.svg"} />
-        <img src={process.env.PUBLIC_URL + "/images/social-media/instagram.svg"} />
-        <img src={process.env.PUBLIC_URL + "/images/social-media/linkedin.svg"} />
-        <img src={process.env.PUBLIC_URL + "/images/social-media/twitter.svg"} />
+        <img src={smimages["facebook.svg"]} />
+        <img src={smimages["instagram.svg"]} />
+        <img src={smimages["linkedin.svg"]} />
+        <img src={smimages["twitter.svg"]} />
       </div>
     </Wrapper>
   )

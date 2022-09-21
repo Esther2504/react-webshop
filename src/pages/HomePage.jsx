@@ -6,8 +6,17 @@ import { useEffect } from 'react';
 // Other imports
 import styled from 'styled-components';
 
-export default function HomePage() {
+// Import all images
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
 
+const images = importAll(require.context('../assets/images', false, /\.(png|jpe?g|svg)$/));
+const productimages = importAll(require.context('../assets/images/products', false, /\.(png|jpe?g|svg)$/));
+
+export default function HomePage() {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -31,21 +40,21 @@ useEffect(() => {
           <h1>Alleen het beste voor je hond</h1>
           <Link to="/producten"><button>Shop now</button></Link>
         </div>
-        <img className="homepage-image" alt="two dogs running" src={process.env.PUBLIC_URL + "/images/homepageimage.png"}></img>
+        <img className="homepage-image" alt="two dogs running" src={images['homepageimage.png']}></img>
       </div>
       <div className="category-container hidden">
       <Link className="manden" to="/manden">
-          <img src={process.env.PUBLIC_URL + "/images/products/manden.jpg"} />
+          <img src={productimages['manden.jpg']} />
           <p>Manden</p>
         </Link>
         
         <Link className="speelgoed" to="/speelgoed">
-          <img src={process.env.PUBLIC_URL + "/images/products/speelgoed.jpg"} />
+          <img src={productimages['speelgoed.jpg']} />
           <p>Speelgoed</p>
         </Link>
 
         <Link className="halsbanden" to="/halsbanden">
-          <img src={process.env.PUBLIC_URL + "/images/products/halsbanden.jpg"} />
+          <img src={productimages['halsbanden.jpg']} />
           <p>Halsbanden</p>
         </Link>
       </div>

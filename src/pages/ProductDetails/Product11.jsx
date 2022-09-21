@@ -8,30 +8,40 @@ import { addProduct } from '../../utils/cartReducer'
 import styled from 'styled-components'
 import data from '../../products.json';
 
+// Import all images
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+
+const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
+const productimages = importAll(require.context('../../assets/images/products', false, /\.(png|jpe?g|svg)$/));
+
 export default function Product11() {
-  const [slide, setSlide] = useState(`/images/products/${data[0].image1}`)
+  const [slide, setSlide] = useState(productimages[data[0].image1])
   const dispatch = useDispatch();
 
   let amount = 1
 
  const nextSlide = () => {
   console.log('click')
-    if (slide == `/images/products/${data[0].image1}`) {
-      setSlide(`/images/products/${data[0].image2}`)
+    if (slide == productimages[data[0].image1]) {
+      setSlide(productimages[data[0].image2])
     } else {
-      setSlide(`/images/products/${data[0].image1}`)
+      setSlide(productimages[data[0].image1])
     }
   }
 
   return (
     <Wrapper>
-      <p className="breadcrumbs"><Link to="/">Home</Link> <img src={process.env.PUBLIC_URL + "/images/right-arrow.svg"} /> <Link to="/producten">Producten</Link> <img src={process.env.PUBLIC_URL + "/images/right-arrow.svg"} /> <Link to={`/${data[0].category}`}>Manden</Link> <img src={process.env.PUBLIC_URL + "/images/right-arrow.svg"} /> {data[0].productname}</p>
+      <p className="breadcrumbs"><Link to="/">Home</Link> <img src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img src={images['right-arrow.svg']} /> <Link to={`/${data[0].category}`}>Manden</Link> <img src={images['right-arrow.svg']} /> {data[0].productname}</p>
       <div className="content">
       <div className="slide-container">
       <div className="slide-images">
-      <img className="slide-arrow left" onClick={nextSlide} src={process.env.PUBLIC_URL + "/images/arrow-left.svg"} />
-      <img src={process.env.PUBLIC_URL + slide} />
-      <img className="slide-arrow right" onClick={nextSlide} src={process.env.PUBLIC_URL + "/images/arrow-right.svg"} />
+      <img className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
+      <img src={slide} />
+      <img className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
       </div>
       <p onClick={nextSlide}>● ●</p>
       </div>
@@ -40,7 +50,7 @@ export default function Product11() {
       <h2>€{data[0].price}</h2>
       <p>{data[0].description}</p>
       <input min="1" placeholder="1" onChange={(e) => amount = e.target.value} type="number" />
-      <button onClick={() => dispatch(addProduct({ id: `${data[0].id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={process.env.PUBLIC_URL + "/images/shopping-cart-add.svg"} /> Bestel</button>
+      <button onClick={() => dispatch(addProduct({ id: `${data[0].id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
       </div>
       </div>
     </Wrapper>

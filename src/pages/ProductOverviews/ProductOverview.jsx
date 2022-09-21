@@ -8,7 +8,16 @@ import { useState } from 'react';
 // Other imports
 import styled from 'styled-components';
 import data from '../../products.json';
-import colors from '../../styles/colors.jpg';
+
+// Import all images
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+
+const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
+const productimages = importAll(require.context('../../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
 export function ProductOverview() {
   const [sorting, setSorting] = useState()
@@ -44,7 +53,7 @@ export function ProductOverview() {
 
   return (
     <Wrapper>
-      <p className="breadcrumbs"><Link to="/">Home</Link> <img src={process.env.PUBLIC_URL + "/images/right-arrow.svg"} /> Producten</p>
+      <p className="breadcrumbs"><Link to="/">Home</Link> <img src={images['right-arrow.svg']} /> Producten</p>
       <div className="content">
       <div className='filters'>
         <div>
@@ -75,7 +84,7 @@ export function ProductOverview() {
         <button style={{ backgroundColor: "orange" }} onClick={() => setColor("oranje")}></button>
         <button style={{ backgroundColor: "pink" }} onClick={() => setColor("roze")}></button>
         <button style={{ backgroundColor: "purple" }} onClick={() => setColor("paars")}></button>
-        <button style={{ background: `url(${colors})`, backgroundSize: "3rem" }} onClick={() => setColor("")}></button>
+        <button style={{ background: `url(${images['colors.jpg']})`, backgroundSize: "3rem" }} onClick={() => setColor("")}></button>
       </div>
       </div>
       </div>
@@ -85,7 +94,7 @@ export function ProductOverview() {
             <div className="product" key={Math.random()}>
               <Link to={`../${product.category}/product${product.id}`}>
                 <div>
-                  <img alt={product.productname} src={process.env.PUBLIC_URL + `/images/products/${product.image1}`} />
+                  <img alt={product.productname} src={productimages[product.image1]} />
                   <h1>{product.productname}</h1>
                   <p>€{product.price}</p>
                 </div>
@@ -93,7 +102,7 @@ export function ProductOverview() {
               <div>
                 <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
                 <button onClick={() => {dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1);}}>
-                  <img alt="winkelmandje" className="cart" src={process.env.PUBLIC_URL + "/images/shopping-cart-add.svg"} /> Bestel</button>
+                  <img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
               </div>
             </div>
           )

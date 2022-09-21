@@ -11,6 +11,16 @@ import { searchTerm } from '../../utils/searchReducer';
 import styled from 'styled-components';
 import data from '../../products.json';
 
+// Import all images
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+
+const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
+const productimages = importAll(require.context('../../assets/images/products', false, /\.(png|jpe?g|svg)$/));
+
 export default function SearchResults() {
   const searchterm = useSelector((state) => state.search.text)
   const dispatch = useDispatch()
@@ -26,14 +36,14 @@ export default function SearchResults() {
             <div key={Math.random()} className="product">
               <Link to={`../${product.category}/product${product.id}`}>
                 <div className="product-info">
-                  <img alt={product.productname} className="img" src={process.env.PUBLIC_URL + `/images/products/${product.image1}`}></img>
+                  <img alt={product.productname} className="img" src={productimages[product.image1]}></img>
                   <h1>{product.productname}</h1>
                   <p>€{product.price}</p>
                 </div>
               </Link>
               <div>
                 <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
-                <button onClick={() => {dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1)}}><img alt="winkelmandje" className="cart" src={process.env.PUBLIC_URL + "/images/shopping-cart-add.svg"} /> Bestel</button>
+                <button onClick={() => {dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1)}}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
               </div>
             </div>
           )

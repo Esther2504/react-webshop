@@ -9,6 +9,16 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 // Other imports
 import styled from 'styled-components';
 
+// Import all images
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+
+const images = importAll(require.context('../assets/images', false, /\.(png|jpe?g|svg)$/));
+const productimages = importAll(require.context('../assets/images/products', false, /\.(png|jpe?g|svg)$/));
+
 export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -54,7 +64,7 @@ export default function Login() {
         <div className="heading">
           <h1>Welkom {user.displayName ? user.displayName : user.email}!</h1>
           <Link to="/producten"><button>Shop now</button></Link>
-          <img className="image" alt="hond" src={process.env.PUBLIC_URL + "/images/inlog-image.png"} />
+          <img className="image" alt="hond" src={images['inlog-image.png']} />
         </div>
       )}
     </Wrapper>
