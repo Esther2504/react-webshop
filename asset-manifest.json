@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-webshop/static/css/main.3d10672c.css",
-    "main.js": "/react-webshop/static/js/main.994feafc.js",
+    "main.js": "/react-webshop/static/js/main.695bc56e.js",
     "static/media/manden.jpg": "/react-webshop/static/media/manden.189b8c6be637fda2bcf4.jpg",
     "static/media/halsbanden.jpg": "/react-webshop/static/media/halsbanden.2cd24c1077e216fbcc78.jpg",
     "static/media/homepageimage.png": "/react-webshop/static/media/homepageimage.42f0dfd819705b21a838.png",
@@ -43,10 +43,10 @@
     "static/media/arrow-left.svg": "/react-webshop/static/media/arrow-left.2fc00c3da97c79df6132.svg",
     "static/media/arrow-right.svg": "/react-webshop/static/media/arrow-right.fb067b51b64603d1997f.svg",
     "main.3d10672c.css.map": "/react-webshop/static/css/main.3d10672c.css.map",
-    "main.994feafc.js.map": "/react-webshop/static/js/main.994feafc.js.map"
+    "main.695bc56e.js.map": "/react-webshop/static/js/main.695bc56e.js.map"
   },
   "entrypoints": [
     "static/css/main.3d10672c.css",
-    "static/js/main.994feafc.js"
+    "static/js/main.695bc56e.js"
   ]
 }
