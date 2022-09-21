@@ -9,7 +9,6 @@ function importAll(r) {
 }
 
 const images = importAll(require.context('../assets/images', false, /\.(png|jpe?g|svg)$/));
-const productimages = importAll(require.context('../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
 export default function NotFound() {
   return (
