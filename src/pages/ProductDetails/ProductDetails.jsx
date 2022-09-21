@@ -7,7 +7,7 @@ import { addProduct } from '../../utils/cartReducer'
 
 // Overige imports
 import styled from 'styled-components'
-import data from "https://esther2504.github.io/react-webshop/products.json"
+import data from '../../products.json';
 
 // Import all images
 function importAll(r) {
