@@ -53,7 +53,7 @@ export function ProductOverview() {
 
   return (
     <Wrapper>
-      <p className="breadcrumbs"><Link to="/">Home</Link> <img src={images['right-arrow.svg']} /> Producten</p>
+      <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> Producten</p>
       <div className="content">
       <div className='filters'>
         <div>

@@ -63,7 +63,7 @@ export default function Login() {
         <div className="heading">
           <h1>Welkom {user.displayName ? user.displayName : user.email}!</h1>
           <Link to="/producten"><button>Shop now</button></Link>
-          <img className="image" alt="hond" src={images['inlog-image.png']} />
+          <img className="image" alt="" src={images['inlog-image.png']} />
         </div>
       )}
     </Wrapper>

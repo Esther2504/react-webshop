@@ -40,21 +40,21 @@ useEffect(() => {
           <h1>Alleen het beste voor je hond</h1>
           <Link to="/producten"><button>Shop now</button></Link>
         </div>
-        <img className="homepage-image" alt="two dogs running" src={images['homepageimage.png']}></img>
+        <img className="homepage-image" alt="two dogs running" src={images['homepageimage.png']} />
       </div>
       <div className="category-container hidden">
       <Link className="manden" to="/manden">
-          <img src={productimages['manden.jpg']} />
+          <img alt="hond in mand" src={productimages['manden.jpg']} />
           <p>Manden</p>
         </Link>
         
         <Link className="speelgoed" to="/speelgoed">
-          <img src={productimages['speelgoed.jpg']} />
+          <img alt="hond met bal" src={productimages['speelgoed.jpg']} />
           <p>Speelgoed</p>
         </Link>
 
         <Link className="halsbanden" to="/halsbanden">
-          <img src={productimages['halsbanden.jpg']} />
+          <img alt="hond met halsband" src={productimages['halsbanden.jpg']} />
           <p>Halsbanden</p>
         </Link>
       </div>

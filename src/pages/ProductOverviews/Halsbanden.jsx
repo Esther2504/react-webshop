@@ -55,7 +55,7 @@ function Product() {
   
   return (
     <Wrapper>
-      <p className="breadcrumbs"><Link to="/">Home</Link> <img src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img src={images['right-arrow.svg']} /> Halsbanden</p>
+      <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> Halsbanden</p>
       <div className="content">
       <div className='filters'>
         <div>

@@ -35,13 +35,13 @@ export default function Product13() {
 
   return (
     <Wrapper>
-      <p className="breadcrumbs"><Link to="/">Home</Link> <img src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img src={images['right-arrow.svg']} /> <Link to={`/${data[2].category}`}>Manden</Link> <img src={images['right-arrow.svg']} /> {data[2].productname}</p>
+      <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${data[2].category}`}>Manden</Link> <img alt="" src={images['right-arrow.svg']} /> {data[2].productname}</p>
       <div className="content">
       <div className="slide-container">
       <div className="slide-images">
-      <img className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']}/>
-      <img src={slide} />
-      <img className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']}/>
+      <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
+      <img alt="product" src={slide} />
+      <img alt="pijl rechts" className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
       </div>
       <p onClick={nextSlide}>● ●</p></div>
       <div className="product-info">
