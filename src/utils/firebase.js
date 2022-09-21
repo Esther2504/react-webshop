@@ -23,9 +23,9 @@ export const auth = getAuth(app);
 export const SignOut = () => {
    signOut(auth)
       .then(function () {
-         // console.log('Signout Succesfull')
+      
       }, function (error) {
-         // console.log('Signout Failed')
+         
       });
 }
 
@@ -33,23 +33,20 @@ export const googleSignIn = () => {
    const provider = new GoogleAuthProvider();
    signInWithPopup(auth, provider)
       .then((result) => {
-         // console.log(result)
+        
 
       })
       .catch((error) => {
-         // console.log(error);
-
-       
+               
       })
 };
 
 export const signIn = (email, password) => {
    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-         // Signed in 
+         
          const user = userCredential.user;
-         //  alert("ingelogd!")
-         // ...
+         
       })
       .catch((error) => {
          const errorCode = error.code;
@@ -67,7 +64,6 @@ export const signIn = (email, password) => {
                break;
             default:
                alert(errorMessage)
-
          }
       });
 }
@@ -76,11 +72,7 @@ export const signUp = (email, password) => {
 
    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-         // Signed in 
          const user = userCredential.user;
-         // console.log(user.email)
-         //  alert("account created")
-         // ...
       })
       .catch((error) => {
          const errorCode = error.code;
@@ -97,10 +89,7 @@ export const signUp = (email, password) => {
                break;
             default:
                alert(errorMessage)
-
          }
-         // alert(errorMessage)
-         // ..
       });
 
 }

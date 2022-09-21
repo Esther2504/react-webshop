@@ -1,13 +1,11 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const loginSlice = createSlice({
   name: 'login',
   initialState: [],
   reducers: {
-    updateUser: (state, action) => {
-      
-      return {...action.payload};
-      
+    updateUser: (state, action) => {   
+      return {...action.payload};  
     },
     signOutUser: (state) => {
       return [];

@@ -22,8 +22,8 @@ export default function ShoppingCart() {
   const products = useSelector((state) => state.cart)
   const dispatch = useDispatch()
 
+  // Totaalprijs wordt berekend
   let subtotal = 0;
-
   data.forEach((product) => {
     products.filter(cartproduct => (product.id === cartproduct.id) ? (
       subtotal += Number(product.price * cartproduct.amount)
@@ -46,7 +46,7 @@ export default function ShoppingCart() {
               <Product key={Math.random()} {...cartproduct} />)
             }
           </div>
-          <button className="clearcart" onClick={() => dispatch(clearCart())}>Leeg winkelwagen</button>
+          <button className="clear-cart" onClick={() => dispatch(clearCart())}>Leeg winkelwagen</button>
           <div className="total">
             <p><span>Subtotaal:</span><span className="total-price">€{subtotal.toFixed(2)}</span></p>
             <p><span>Verzendkosten*:</span><span className="total-price">€{shipping.toFixed(2)}</span></p>
@@ -67,6 +67,7 @@ export default function ShoppingCart() {
   )
 }
 
+// Cart products
 export function Product({ id, amount }) {
   const dispatch = useDispatch()
 
@@ -109,7 +110,7 @@ hr {
   margin-left: 0;
 }
 
-.clearcart {
+.clear-cart {
   align-self: flex-end;
   position: relative;
   right: 13.5rem;
@@ -163,26 +164,27 @@ hr {
     }
   }
 
-  @media only screen and (max-width: 870px) {
-flex-direction: column;
-align-items: center;
-width: 100%;
-padding-bottom: 13rem;
+@media only screen and (max-width: 870px) {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 13rem;
 
-.total {
-  margin-right: 0;
-}
+  .total {
+    margin-right: 0;
+  }
 
-.clearcart {
-right: 0;
-align-self: center;
-}
+  .clear-cart {
+    right: 0;
+    align-self: center;
+  }
 
-.empty-cart {
-  text-align: center;
-img {
-  width: 80%;
-}
+  .empty-cart {
+    text-align: center;
+
+  img {
+    width: 80%;
+  }
 }
   }
 `
@@ -190,6 +192,7 @@ img {
 const ProductsWrapper = styled.div`
 flex-direction: column;
 justify-self: flex-start;
+
 img {
   width: 14rem;
   margin-right: 1rem;
@@ -201,11 +204,11 @@ hr {
 }
 
 button {
-border: 1px solid white;
-background-color: #49abcc;
-color: white;
-cursor: pointer;
-font-size: 0.9rem;
+  border: 1px solid white;
+  background-color: #49abcc;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
 input {
@@ -217,10 +220,18 @@ p {
   font-style: italic;
 }
 
+.product {
+  display: flex;
+  align-items: center;
+  width: 38rem;
+  margin-left: 2rem;
+}
+
 .product-amount {
   display: flex;
   height: 2rem;
   align-items: center;
+
   p {
     font-style: normal;
     width: 1.5rem;
@@ -230,13 +241,6 @@ p {
 
 .product-info {
   width: 18rem;
-}
-
-.product {
-  display: flex;
-align-items: center;
-width: 38rem;
-margin-left: 2rem;
 }
 
 a {
@@ -251,18 +255,16 @@ a h2:hover {
 
 @media only screen and (max-width: 870px) {
   .product {
-flex-direction: column;
-align-content: center;
-justify-content: center;
-align-items: center;
-text-align: center;
-margin-left: 0;
-}
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 0;
+  }
 
-.product-amount {
-  justify-content: center;
+  .product-amount {
+    justify-content: center;
+  }
 }
-
-}
-
 `

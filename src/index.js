@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import store from './utils/store';
 
 // Toast imports
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Persist imports
@@ -17,6 +17,7 @@ import { persistStore } from 'redux-persist';
 
 // Router imports
 import { HashRouter, Routes, Route } from 'react-router-dom';
+
 import Manden from './pages/ProductOverviews/Manden.jsx';
 import Speelgoed from './pages/ProductOverviews/Speelgoed.jsx';
 import HomePage from './pages/HomePage';
@@ -52,6 +53,7 @@ root.render(
       <Route path="/">
         <Route index element={<HomePage />} />
         <Route path="/producten" element={<ProductOverview />} />
+
         <Route path="/manden" element={<Manden />} />
         <Route path="/manden/product11" element={<Product11 />} />
         <Route path="/manden/product12" element={<Product12 />} />

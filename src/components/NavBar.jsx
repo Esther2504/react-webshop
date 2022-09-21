@@ -1,11 +1,8 @@
 // React, Router & Redux imports
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux'
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
 import { searchTerm } from '../utils/searchReducer';
-import { useEffect } from 'react';
 
 // Other imports
 import styled from 'styled-components';
@@ -23,7 +20,6 @@ function importAll(r) {
 const images = importAll(require.context('../assets/images', false, /\.(png|jpe?g|svg)$/));
 
 export default function NavBar() {
-  const users = useSelector((state) => state.login)
   const [openLogin, setOpenLogin] = useState(false);
   const [hamburger, setHamburger] = useState(false);
   const [isDesktop, setDesktop] = useState(window.innerWidth > 750)
@@ -31,7 +27,7 @@ export default function NavBar() {
   const searchterm = useSelector((state) => state.search.text)
   const dispatch = useDispatch()
 
-  // Doorgeven producten winkelmand aan styled components
+  // Doorgeven productaantal winkelmand aan styled components
   let total = 0;
   data.forEach((product) => {
     products.filter(cartproduct => (product.id === cartproduct.id) ? (
@@ -50,32 +46,35 @@ export default function NavBar() {
     toggleLogin()
   }
 
-const updateMedia = () => {
-  setDesktop(window.innerWidth > 750);
-};
+  // Om het hamburger menu te laten zien op basis van schermgrootte
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 750);
+  };
 
-useEffect(() => {
-  window.addEventListener("resize", updateMedia);
-  return () => window.removeEventListener("resize", updateMedia);
-}, []);
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  }, []);
 
 
-let link = "/zoekresultaten"
+  // Als de gebruiker zoekt zonder input in de zoekbalk, wordt hij doorverwezen naar de productoverview pagina
+  let link = "/zoekresultaten"
 
-if (searchterm == undefined) {
-  link = "/producten"
-} else {
-  link = "/zoekresultaten"
-}
+  if (searchterm == undefined) {
+    link = "/producten"
+  } else {
+    link = "/zoekresultaten"
+  }
 
-useEffect(() => {
-  document.querySelector(".input").addEventListener("keyup", function (event) {
-    event.preventDefault();
-    if (event.key === 'Enter') {
-      document.querySelector(".search-link").click();
-    }
-  });
-}, [searchterm])
+  // Zoeken kan ook met enter key i.p.v. button
+  useEffect(() => {
+    document.querySelector(".input").addEventListener("keyup", function (event) {
+      event.preventDefault();
+      if (event.key === 'Enter') {
+        document.querySelector(".search-link").click();
+      }
+    });
+  }, [searchterm])
 
   const auth = getAuth();
   const user = auth.currentUser;
@@ -109,46 +108,68 @@ useEffect(() => {
           </Link>
         </div>
       </nav>
-      
+
       {isDesktop ? (
-      <ul className="bottom-nav-desktop">
-        <Link to="/"><li>Home</li></Link>
-        <Link to="/manden"><li>Manden</li></Link>
-        <Link to="/speelgoed"><li>Speelgoed</li></Link>
-        <Link to="/halsbanden"><li>Halsbanden</li></Link>
+        <ul className="bottom-nav-desktop">
+          <Link to="/"><li>Home</li></Link>
+          <Link to="/manden"><li>Manden</li></Link>
+          <Link to="/speelgoed"><li>Speelgoed</li></Link>
+          <Link to="/halsbanden"><li>Halsbanden</li></Link>
         </ul>
       ) : (
         <div>
-        <div className="searchbar-mobile">
-          <input onChange={(e) => dispatch(searchTerm({ text: e.target.value }))}></input><Link to={link}><button>Zoek</button></Link>
-        </div>
-        <button onClick={() => setHamburger(!hamburger)} className="hamburger"> 
-      { !hamburger ? <i className='menu-button'></i> : (
-        <>
-      <i className='menu-button-close'></i>
-       <ul className="bottom-nav-mobile">
-        <hr></hr>
-        <Link to="/"><li>Home</li></Link>
-        <hr></hr>
-        <Link to="/manden"><li>Manden</li></Link>
-        <hr></hr>
-        <Link to="/speelgoed"><li>Speelgoed</li></Link>
-        <hr></hr>
-        <Link to="/halsbanden"><li>Halsbanden</li></Link>
-        <hr></hr>
-        </ul>
-        </>
-      )
-        }
-        </button>
+          <div className="searchbar-mobile">
+            <input onChange={(e) => dispatch(searchTerm({ text: e.target.value }))}></input><Link to={link}><button>Zoek</button></Link>
+          </div>
+          <button onClick={() => setHamburger(!hamburger)} className="hamburger">
+            {!hamburger ? <i className='hamburger-menu'></i> : (
+              <>
+                <i className='hamburger-menu-close'></i>
+                <ul className="bottom-nav-mobile">
+                  <hr></hr>
+                  <Link to="/"><li>Home</li></Link>
+                  <hr></hr>
+                  <Link to="/manden"><li>Manden</li></Link>
+                  <hr></hr>
+                  <Link to="/speelgoed"><li>Speelgoed</li></Link>
+                  <hr></hr>
+                  <Link to="/halsbanden"><li>Halsbanden</li></Link>
+                  <hr></hr>
+                </ul>
+              </>
+            )
+            }
+          </button>
         </div>
       )}
-      
+
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
+.top-nav {
+  width: 100vw;
+  img {
+    width: 5rem;
+    cursor: pointer;
+  }
+
+  .cart, .login {
+    width: 2rem;
+    margin-left: 1rem;
+  }
+
+  .login-cart {
+      margin-left: auto;
+      margin-right: 1rem;
+      margin-top: 1rem;
+    }
+
+    display: flex;
+    justify-content: flex-end;
+}
+
 .loginpopup {
   border: 1px solid white;
   position: absolute;
@@ -161,12 +182,6 @@ const Wrapper = styled.div`
   right: 2rem;
   padding: 0.2rem;
   z-index: 6;
-
-  .userphoto {
-    width: 2rem !important;
-    border-radius: 50%;
-    border: 2px solid white;
-  }
 
   .signin {
     width: 8rem;
@@ -199,49 +214,33 @@ const Wrapper = styled.div`
   }
 }
 
-.menu-button,
-.menu-button::before,
-.menu-button::after {
-  display: block;
-  background-color: white;
-  position: absolute;
-  height: 4px;
-  width: 30px;
-  transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
-  border-radius: 2px;
-  top: 0.8rem;
-}
+.searchbar {
+  margin: auto;
+  position: relative;
+  left: 7rem;
 
-.menu-button::before {
-  content: '';
-  margin-top: -5px;
-}
-
-.menu-button::after {
-  content: '';
-  margin-top: 3px;
-}
-
-.top-nav {
-  width: 100vw;
-  img {
-    width: 5rem;
-    cursor: pointer;
+  input {
+    height: 1.2rem;
+    width: 20rem;
+    border: 2px solid #49abcc;
+    border-radius: 0.5rem;
   }
+}
 
-  .cart, .login {
-    width: 2rem;
-    margin-left: 1rem;
-  }
+.searchbar input:focus {
+  outline: none;
+}
 
-  .login-cart {
-      margin-left: auto;
-      margin-right: 1rem;
-      margin-top: 1rem;
-    }
-
-    display: flex;
-    justify-content: flex-end;
+button {
+  height: 1.5rem;
+  width: 3rem;
+  background-color: #49abcc;
+  color: white;
+  border: 2px solid #49abcc;
+  border-radius: 0.5rem;
+  position: relative;
+  top: 0rem;
+  left: 0.2rem;
 }
 
 .bottom-nav-desktop {
@@ -282,36 +281,6 @@ const Wrapper = styled.div`
   }
 }
 
-
-.searchbar {
-  margin: auto;
-  position: relative;
-  left: 7rem;
-
-  input {
-    height: 1.2rem;
-    width: 20rem;
-    border: 2px solid #49abcc;
-    border-radius: 0.5rem;
-  }
-}
-
-.searchbar input:focus {
-  outline: none;
-}
-
-button {
-  height: 1.5rem;
-  width: 3rem;
-  background-color: #49abcc;
-  color: white;
-  border: 2px solid #49abcc;
-  border-radius: 0.5rem;
-  position: relative;
-  top: 0rem;
-  left: 0.2rem;
-}
-
 .login-cart::after {
   content: "${props => props.total}";
   display: inline-block;
@@ -324,15 +293,6 @@ button {
   top: -1.5rem;
   right: 0.7rem;
   font-size: 1rem;
-}
-
-.hamburger {
-  width: 100vw;
-  height: 3rem;
-  display: none;
-  left: 0;
-  border-radius: 0;
-  top: -1.5rem;
 }
 
 .bottom-nav-mobile {
@@ -366,18 +326,6 @@ button {
   }
 }
 
-@keyframes growDown {
-  0% {
-      transform: scaleY(0)
-  }
-  80% {
-      transform: scaleY(1.1)
-  }
-  100% {
-      transform: scaleY(1)
-  }
-}
-
 .searchbar-mobile {
   width: 20rem;
   position: relative;
@@ -403,6 +351,50 @@ button {
   outline: none;
 }
 
+.hamburger {
+  width: 100vw;
+  height: 3rem;
+  display: none;
+  left: 0;
+  border-radius: 0;
+  top: -1.5rem;
+}
+
+.hamburger-menu,
+.hamburger-menu::before,
+.hamburger-menu::after {
+  display: block;
+  background-color: white;
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 2px;
+  top: 0.8rem;
+}
+
+.hamburger-menu::before {
+  content: '';
+  margin-top: -5px;
+}
+
+.hamburger-menu::after {
+  content: '';
+  margin-top: 3px;
+}
+
+@keyframes growDown {
+  0% {
+      transform: scaleY(0)
+  }
+  80% {
+      transform: scaleY(1.1)
+  }
+  100% {
+      transform: scaleY(1)
+  }
+}
+
 @media only screen and (max-width: 750px) {
   .searchbar {
     margin: auto;
@@ -425,8 +417,8 @@ button {
     display: block;
   }
 
-  .menu-button-close,
-.menu-button-close::before {
+  .hamburger-menu-close,
+  .hamburger-menu-close::before {
   display: block;
   background-color: white;
   position: absolute;
@@ -435,13 +427,13 @@ button {
   border-radius: 2px;
 }
 
-.menu-button-close {
+.hamburger-menu-close {
   transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
   transform: rotate(45deg);
   top: 1.2rem;
 }
 
-.menu-button-close::before {
+.hamburger-menu-close::before {
   content: '';
   transform: rotate(90deg);
 }
@@ -465,8 +457,9 @@ button {
 @media only screen and (max-width: 390px) {
 .searchbar-mobile {
   width: 14rem;
-left: 3.3rem;
-input {
+  left: 3.3rem;
+  
+  input {
   width: 9rem;
 }
 }

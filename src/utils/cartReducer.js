@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
 
 const cartSlice = createSlice({
@@ -28,7 +28,7 @@ const cartSlice = createSlice({
         state.splice(state.indexOf(productToRemove), 1);
       }
     },
-    clearCart: (state, action) => {
+    clearCart: () => {
       return [];
     }
   },

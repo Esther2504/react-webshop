@@ -52,11 +52,10 @@ function Product() {
     filteredData = data.filter(product => (product.color).includes(color))
   }
 
-  
   return (
     <Wrapper>
       <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> Halsbanden</p>
-      <div className="content">
+      <div className="container">
       <div className='filters'>
         <div>
         <p><b>Prijs</b></p>
@@ -149,7 +148,7 @@ input {
     }
   }
 
-  .content {
+  .container {
     margin: 1rem auto;
     text-align: center;
     min-height: 100vh;
@@ -241,7 +240,7 @@ input[type=number] {
 }
 
 @media only screen and (max-width: 950px) {
-  .content {
+  .container {
     padding-bottom: 7rem;
     flex-direction: column;
     align-items: center;

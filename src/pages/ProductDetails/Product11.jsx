@@ -24,8 +24,7 @@ export default function Product11() {
 
   let amount = 1
 
- const nextSlide = () => {
-  
+  const nextSlide = () => {
     if (slide == productimages[data[0].image1]) {
       setSlide(productimages[data[0].image2])
     } else {
@@ -36,22 +35,22 @@ export default function Product11() {
   return (
     <Wrapper>
       <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${data[0].category}`}>Manden</Link> <img alt="" src={images['right-arrow.svg']} /> {data[0].productname}</p>
-      <div className="content">
-      <div className="slide-container">
-      <div className="slide-images">
-      <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
-      <img alt="product" src={slide} />
-      <img alt="pijl rechts" className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
-      </div>
-      <p onClick={nextSlide}>● ●</p>
-      </div>
-      <div className="product-info">
-      <h1>{data[0].productname}</h1>
-      <h2>€{data[0].price}</h2>
-      <p>{data[0].description}</p>
-      <input min="1" placeholder="1" onChange={(e) => amount = e.target.value} type="number" />
-      <button onClick={() => dispatch(addProduct({ id: `${data[0].id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
-      </div>
+      <div className="container">
+        <div className="slide-container">
+          <div className="slide-images">
+            <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
+            <img alt="product" src={slide} />
+            <img alt="pijl rechts" className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
+          </div>
+          <p onClick={nextSlide}>● ●</p>
+        </div>
+        <div className="product-info">
+          <h1>{data[0].productname}</h1>
+          <h2>€{data[0].price}</h2>
+          <p>{data[0].description}</p>
+          <input min="1" placeholder="1" onChange={(e) => amount = e.target.value} type="number" />
+          <button onClick={() => dispatch(addProduct({ id: `${data[0].id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
+        </div>
       </div>
     </Wrapper>
   )
@@ -100,7 +99,7 @@ p {
     }
   }
 
-.content {
+.container {
   display: flex;
   align-items: center;
   width: 55rem;
@@ -145,7 +144,7 @@ p {
 }
 
 @media only screen and (max-width: 870px) {
-  .content {
+  .container {
     padding-bottom: 7rem;
     flex-direction: column;
     align-items: center;

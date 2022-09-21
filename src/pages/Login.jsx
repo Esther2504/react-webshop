@@ -2,11 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
-// Firebase imports
+// Other imports
 import { googleSignIn, signIn, signUp } from '../utils/firebase';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-// Other imports
 import styled from 'styled-components';
 
 // Import all images
@@ -63,7 +61,7 @@ export default function Login() {
         <div className="heading">
           <h1>Welkom {user.displayName ? user.displayName : user.email}!</h1>
           <Link to="/producten"><button>Shop now</button></Link>
-          <img className="image" alt="" src={images['inlog-image.png']} />
+          <img className="inlog-img" alt="" src={images['inlog-image.png']} />
         </div>
       )}
     </Wrapper>
@@ -73,28 +71,6 @@ export default function Login() {
 
 const Wrapper = styled.div`
 min-height: 100vh;
-
-.heading {
-  display: flex;
-  flex-direction: column;
-  color: #34556d;
-  margin: auto;
-  align-items: center;
-
-  button {
-    width: 6rem;
-    height: 3rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    border-style: none;
-    border-radius: 0.5rem;
-  }
-}
-
-.image {
-  width: 26rem;
-  jusitfy-self: flex-end;
-}
 
 .login-container {
   display: flex;
@@ -136,8 +112,30 @@ input {
   margin: 0.2rem;
 }
 
+.heading {
+  display: flex;
+  flex-direction: column;
+  color: #34556d;
+  margin: auto;
+  align-items: center;
+
+  button {
+    width: 6rem;
+    height: 3rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-style: none;
+    border-radius: 0.5rem;
+  }
+}
+
+.inlog-img {
+  width: 26rem;
+  jusitfy-self: flex-end;
+}
+
 @media only screen and (max-width: 750px) {
-padding-bottom: 9rem;
+  padding-bottom: 9rem;
 
 .login-container {
   width: 100%;
@@ -150,6 +148,5 @@ padding-bottom: 9rem;
 .login-card {
   margin-bottom: 2rem;
 }
-
 }
 `

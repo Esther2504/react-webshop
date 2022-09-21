@@ -35,7 +35,7 @@ export default function Product31() {
   return (
     <Wrapper>
       <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${data[6].category}`}>Halsbanden</Link> <img alt="" src={images['right-arrow.svg']} /> {data[6].productname}</p>
-      <div className="content">
+      <div className="container">
       <div className="slide-container">
       <div className="slide-images">
       <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
@@ -98,7 +98,7 @@ p {
     }
   }
 
-.content {
+.container {
   display: flex;
   align-items: center;
   width: 55rem;
@@ -143,7 +143,7 @@ p {
 }
 
 @media only screen and (max-width: 870px) {
-  .content {
+  .container {
     padding-bottom: 7rem;
     flex-direction: column;
     align-items: center;

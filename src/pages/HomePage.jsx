@@ -1,7 +1,6 @@
 // React, Router & Redux imports
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 
 // Other imports
 import styled from 'styled-components';
@@ -17,21 +16,23 @@ const images = importAll(require.context('../assets/images', false, /\.(png|jpe?
 const productimages = importAll(require.context('../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
 export default function HomePage() {
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show')
-    } else {
-      entry.target.classList.remove('show')
-    }
-  }
-  )
-})
 
-useEffect(() => {
-  const hiddenElements = document.querySelectorAll('.hidden')
-  hiddenElements.forEach((el) => observer.observe(el))
-}, [observer]);
+  // Fade in content
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show')
+      } else {
+        entry.target.classList.remove('show')
+      }
+    }
+    )
+  })
+
+  useEffect(() => {
+    const hiddenElements = document.querySelectorAll('.hidden')
+    hiddenElements.forEach((i) => observer.observe(i))
+  }, [observer]);
 
   return (
     <Wrapper>
@@ -43,11 +44,11 @@ useEffect(() => {
         <img className="homepage-image" alt="two dogs running" src={images['homepageimage.png']} />
       </div>
       <div className="category-container hidden">
-      <Link className="manden" to="/manden">
+        <Link className="manden" to="/manden">
           <img alt="hond in mand" src={productimages['manden.jpg']} />
           <p>Manden</p>
         </Link>
-        
+
         <Link className="speelgoed" to="/speelgoed">
           <img alt="hond met bal" src={productimages['speelgoed.jpg']} />
           <p>Speelgoed</p>
@@ -71,9 +72,9 @@ flex-direction: column;
 
 .heading {
   display: flex;
-flex-direction: row;
-color: #34556d;
-margin: auto;
+  flex-direction: row;
+  color: #34556d;
+  margin: auto;
 }
 
 .heading-message {
@@ -104,32 +105,30 @@ button {
   width: 90%;
   justify-content: space-between;
 
-
   a {
     width: 20rem;
     text-decoration: none;
     text-align: center;
   }
   
-img {
-  width: 20rem;
-  background-size: 20rem;
-  border: 3px solid #49abcc;
-  border-radius: 20rem;
-}
+  img {
+    width: 20rem;
+    background-size: 20rem;
+    border: 3px solid #49abcc;
+    border-radius: 20rem;
+  }
 
-p {
-  color: white;
-  background-color: #49abcc;
-  text-align: center;
-  margin: 1rem auto;
-  font-size: 1.1rem;
-  width: 9rem;
-  padding: 0.2rem;
-  border-radius: 1rem;
+  p {
+    color: white;
+    background-color: #49abcc;
+    text-align: center;
+    margin: 1rem auto;
+    font-size: 1.1rem;
+    width: 9rem;
+    padding: 0.2rem;
+    border-radius: 1rem;
+  }
 }
-}
-
 
 .hidden {
 opacity: 0;

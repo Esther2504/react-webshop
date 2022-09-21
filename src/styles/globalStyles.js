@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
 export const GlobalStyle = createGlobalStyle`
 
 html {
@@ -15,11 +14,11 @@ body {
     font-family: 'Helvetica Neue', 'Arial', sans-serif;
     overflow-x: hidden;
     position: relative;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
--moz-box-sizing: border-box;    /* Firefox, other Gecko */
-box-sizing: border-box;   
-padding-bottom: 10rem;
-max-width: 100%;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;   
+    padding-bottom: 10rem;
+    max-width: 100%;
 }
 
 button {
