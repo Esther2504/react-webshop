@@ -33,10 +33,10 @@ export default function Footer() {
       </div>
       <div className="social-media">
         <p>Wil je ons volgen?</p>
-        <img src={smimages["facebook.svg"]} />
-        <img src={smimages["instagram.svg"]} />
-        <img src={smimages["linkedin.svg"]} />
-        <img src={smimages["twitter.svg"]} />
+        <img alt="facebook" src={smimages["facebook.svg"]} />
+        <img alt="instagram" src={smimages["instagram.svg"]} />
+        <img alt="linkedin" src={smimages["linkedin.svg"]} />
+        <img alt="twitter" src={smimages["twitter.svg"]} />
       </div>
     </Wrapper>
   )

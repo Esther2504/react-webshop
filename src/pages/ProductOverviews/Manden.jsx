@@ -8,7 +8,6 @@ import { useState } from 'react';
 // Other imports
 import styled from 'styled-components';
 import data from '../../products.json';
-import colors from '../../styles/colors.jpg';
 
 // Import all images
 function importAll(r) {
