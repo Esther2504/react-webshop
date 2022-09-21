@@ -24,15 +24,6 @@ import Speelgoed from './pages/ProductOverviews/Speelgoed.jsx';
 import HomePage from './pages/HomePage';
 import ShoppingCart from './pages/ShoppingCart';
 import Halsbanden from './pages/ProductOverviews/Halsbanden';
-import Product11 from './pages/ProductDetails/Product11';
-import Product12 from './pages/ProductDetails/Product12';
-import Product13 from './pages/ProductDetails/Product13';
-import Product21 from './pages/ProductDetails/Product21';
-import Product22 from './pages/ProductDetails/Product22';
-import Product23 from './pages/ProductDetails/Product23';
-import Product31 from './pages/ProductDetails/Product31';
-import Product32 from './pages/ProductDetails/Product32';
-import Product33 from './pages/ProductDetails/Product33';
 import Login from './pages/Login';
 import { ProductOverview } from './pages/ProductOverviews/ProductOverview.jsx';
 import SearchResults from './pages/ProductOverviews/SearchResults';
@@ -58,20 +49,12 @@ root.render(
 
         <Route path="/manden" element={<Manden />} />
         <Route path="/manden/:product" element={<ProductDetails />} />
-        {/* <Route path="/manden/product11" element={<Product11 />} />
-        <Route path="/manden/product12" element={<Product12 />} />
-        <Route path="/manden/product13" element={<Product13 />} /> */}
 
         <Route path="/speelgoed" element={<Speelgoed />} />
         <Route path="/speelgoed/:product" element={<ProductDetails />} />
-        {/* <Route path="/speelgoed/product21" element={<Product21 />} />
-        <Route path="/speelgoed/product22" element={<Product22 />} />
-        <Route path="/speelgoed/product23" element={<Product23 />} /> */}
 
         <Route path="/halsbanden" element={<Halsbanden />} />
         <Route path="/halsbanden/:product" element={<ProductDetails />} />
-        // <Route path="/halsbanden/product32" element={<Product32 />} />
-        // <Route path="/halsbanden/product33" element={<Product33 />} /> 
 
         <Route path="/login" element={<Login />} />
         <Route path="/winkelwagen" element={<ShoppingCart />} />
