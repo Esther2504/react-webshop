@@ -7,8 +7,9 @@ import { addProduct } from '../../utils/cartReducer'
 
 // Overige imports
 import styled from 'styled-components'
-import data from '../../products.json';
+import data from '../../products';
 import { useEffect } from 'react';
+import NotFound from '../NotFound';
 
 // Import all images
 function importAll(r) {
@@ -37,13 +38,14 @@ export default function ProductDetails() {
     }
 
     return (
+      (item ? 
         <Wrapper>
             <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item?.category}`}>{item?.category[0].toUpperCase() + item?.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item?.productname}</p>
             <div className="container">
                 <div className="slide-container">
                     <div className="slide-images">
                         <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
-                        <img alt="product" src={productimages[item?.image1]} />
+                        <img alt="product" src={productimages[item[`image${slide}`]]} />
                         <img alt="pijl rechts" className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
                     </div>
                     <p onClick={nextSlide}>● ●</p></div>
@@ -56,6 +58,9 @@ export default function ProductDetails() {
                 </div>
             </div>
         </Wrapper>
+        :
+<NotFound />
+      )
     )
 }
 

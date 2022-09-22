@@ -93,7 +93,7 @@ export function ProductOverview() {
         {filteredData.map((product) =>
           product.price >= parseInt(minprice) && product.price <= parseInt(maxprice) ? (
             <div className="product" key={Math.random()}>
-              <Link to={`../${product.category}/${product.id}`}>
+              <Link to={`/${product.category}/${product.id}`}>
                 <div>
                   <img alt={product.productname} src={productimages[product.image1]} />
                   <h1>{product.productname}</h1>

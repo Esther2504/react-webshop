@@ -1,7 +1,7 @@
 {
   "name": "webshop-opdracht",
   "version": "0.1.0",
-  "homepage": "https://esther2504.github.io/react-webshop/",
+  "homepage": "https://esther2504.github.io/react-webshop",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
