@@ -6,7 +6,7 @@ import { addProduct } from '../../utils/cartReducer';
 
 // Other imports
 import styled from 'styled-components';
-import data from '../../products.json';
+import { data } from '../../products';
 
 // Import all images
 function importAll(r) {
@@ -26,7 +26,7 @@ function Product() {
   const [amount, setAmount] = useState(1)
   const dispatch = useDispatch()
 
-  data = data.filter(product => product.category === "speelgoed")
+  // let data2 = data.filter(product => product.category === "speelgoed")
 
   // Sorteren op prijs
   if (sorting === "low") {

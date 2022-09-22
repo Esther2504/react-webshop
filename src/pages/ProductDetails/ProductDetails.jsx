@@ -7,7 +7,7 @@ import { addProduct } from '../../utils/cartReducer'
 
 // Overige imports
 import styled from 'styled-components'
-import data from '../../products';
+import { data } from '../../products';
 import { useEffect } from 'react';
 import NotFound from '../NotFound';
 
@@ -25,6 +25,8 @@ export default function ProductDetails() {
     const dispatch = useDispatch();
 
     let amount = 1
+
+    console.log(data)
 
     const { product } = useParams();
     const item = data.find(item => item.id === product);

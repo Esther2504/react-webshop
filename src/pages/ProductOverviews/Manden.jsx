@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 // Other imports
 import styled from 'styled-components';
-import data from '../../products.json';
+import { data } from '../../products';
 
 // Import all images
 function importAll(r) {
@@ -28,7 +28,7 @@ function Product() {
   const dispatch = useDispatch()
 
 
-  data = data.filter(product => product.category === "manden")
+  // data = data.filter(product => product.category === "manden")
 
   // Sorteren op prijs
   if (sorting === "low") {
@@ -94,7 +94,7 @@ function Product() {
       </div>
       <div className="products-container">
         {filteredData.map((product) =>
-          product.price >= parseInt(minprice) && product.price <= parseInt(maxprice) ? (
+          product.category === "manden" && product.price >= parseInt(minprice) && product.price <= parseInt(maxprice) ? (
             <div className="product" key={Math.random()}>
               <Link to={`${product.id}`}>
                 <div>

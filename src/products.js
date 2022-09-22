@@ -1,4 +1,4 @@
-[
+export const data = [
     {
         "productname": "Scruffs Mand",
         "id": "11",

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 // Other imports
 import styled from 'styled-components';
-import data from '../products.json';
+import { data } from '../products';
 
 // Import all images
 function importAll(r) {

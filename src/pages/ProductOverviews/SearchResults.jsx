@@ -9,7 +9,7 @@ import { searchTerm } from '../../utils/searchReducer';
 
 // Other imports
 import styled from 'styled-components';
-import data from '../../products.json';
+import { data } from '../../products';
 
 // Import all images
 function importAll(r) {

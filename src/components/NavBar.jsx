@@ -8,7 +8,7 @@ import { searchTerm } from '../utils/searchReducer';
 import styled from 'styled-components';
 import { SignOut } from '../utils/firebase';
 import { getAuth } from 'firebase/auth';
-import data from '../products.json';
+import { data } from '../products';
 
 // Import all images
 function importAll(r) {
