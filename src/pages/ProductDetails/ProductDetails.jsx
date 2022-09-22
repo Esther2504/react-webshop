@@ -43,7 +43,7 @@ export default function ProductDetails() {
                 <div className="slide-container">
                     <div className="slide-images">
                         <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
-                        <img alt="product" src={productimages[item[`image${slide}`]]} />
+                        <img alt="product" src={productimages[item?.image1]} />
                         <img alt="pijl rechts" className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
                     </div>
                     <p onClick={nextSlide}>● ●</p></div>
