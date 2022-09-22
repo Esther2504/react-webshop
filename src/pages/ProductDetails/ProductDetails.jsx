@@ -25,8 +25,6 @@ export default function ProductDetails() {
 
     let amount = 1
 
-    
-
     const { product } = useParams();
     const item = data.find(item => item.id === product);
 
@@ -40,7 +38,7 @@ export default function ProductDetails() {
 
     return (
         <Wrapper>
-            <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item?.category}`}>{item?.category[0].toUpperCase() + item?.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item.productname}</p>
+            <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item?.category}`}>{item?.category[0].toUpperCase() + item?.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item?.productname}</p>
             <div className="container">
                 <div className="slide-container">
                     <div className="slide-images">
@@ -50,11 +48,11 @@ export default function ProductDetails() {
                     </div>
                     <p onClick={nextSlide}>● ●</p></div>
                 <div className="product-info">
-                    <h1>{item.productname}</h1>
-                    <h2>€{item.price}</h2>
-                    <p>{item.description}</p>
+                    <h1>{item?.productname}</h1>
+                    <h2>€{item?.price}</h2>
+                    <p>{item?.description}</p>
                     <input min="1" placeholder="1" onChange={(e) => amount = e.target.value} type="number" />
-                    <button onClick={() => dispatch(addProduct({ id: `${item.id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
+                    <button onClick={() => dispatch(addProduct({ id: `${item?.id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
                 </div>
             </div>
         </Wrapper>
