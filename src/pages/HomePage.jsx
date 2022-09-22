@@ -5,18 +5,16 @@ import { Link } from 'react-router-dom';
 // Other imports
 import styled from 'styled-components';
 
-// Import all images
+// Images import functie
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
   return images;
 }
-
 const images = importAll(require.context('../assets/images', false, /\.(png|jpe?g|svg)$/));
 const productimages = importAll(require.context('../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
 export default function HomePage() {
-
   // Fade in content
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

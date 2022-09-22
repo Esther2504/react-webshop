@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { data } from '../products';
 
-// Import all images
+// Images import functie
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -67,7 +67,7 @@ export default function ShoppingCart() {
   )
 }
 
-// Cart products
+// Producten winkelwagen
 export function Product({ id, amount }) {
   const dispatch = useDispatch()
 
@@ -76,7 +76,7 @@ export function Product({ id, amount }) {
       {data.map((product) =>
         product.id === `${id}` ? (
           <div key={Math.random()} className="product">
-            <img alt={product.productname} className="img" src={productimages[product.image1]} />
+            <img alt={product.productname} className="img" src={productimages[product.productimage]} />
             <div className="product-info">
               <Link to={`../${product.category}/product${product.id}`}>
                 <h2>{product.productname}</h2>

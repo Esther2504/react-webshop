@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../utils/cartReducer';
+import { useParams } from 'react-router-dom';
 
 // Other imports
 import styled from 'styled-components';
@@ -18,15 +19,13 @@ function importAll(r) {
 const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
 const productimages = importAll(require.context('../../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
-function Product() {
+export default function Product() {
   const [sorting, setSorting] = useState()
   const [color, setColor] = useState()
   const [minprice, setMinPrice] = useState("0")
   const [maxprice, setMaxPrice] = useState("1500")
   const [amount, setAmount] = useState(1)
   const dispatch = useDispatch()
-
-  // data = data.filter(product => product.category === "halsbanden")
 
   // Sorteren op prijs
   if (sorting === "low") {
@@ -40,76 +39,78 @@ function Product() {
   }
 
   // Bij leeghalen velden worden alle producten weer getoond
-  if (minprice === "" ) {
+  if (minprice === "") {
     setMinPrice("0")
   } else if (maxprice === "") {
     setMaxPrice("1500")
   }
 
-  // Als je van filter verandert, zal de originele data gefilterd worden i.p.v. de eerder gefilterde data
-  let filteredData = data
+  const { category } = useParams();
+  let filteredData = data.filter(item => item.category === category)
+
+  let products = filteredData
   if (color) {
-    filteredData = data.filter(product => (product.color).includes(color))
+    products = filteredData.filter(product => (product.color).includes(color))
   }
 
   return (
     <Wrapper>
-      <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> Halsbanden</p>
+      <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> {filteredData[0].category[0].toUpperCase() + filteredData[0].category.substring(1)}</p>
       <div className="container">
-      <div className='filters'>
-        <div>
-        <p><b>Prijs</b></p>
-        <div className="sorting">
-          <select onChange={(e) => setSorting(e.target.value)}>
-      <option value="">Sorteer:</option>
-      <option value="low" onClick={() => setSorting("low")}>laag - hoog</option>
-      <option value="high" onClick={() => setSorting("high")}>hoog - laag</option>
-      </select>
-      </div>
-      <div>
-      € <input onChange={(e) => setMinPrice(e.target.value)}></input>-
-      € <input onChange={(e) => setMaxPrice(e.target.value)}></input>
-      </div>
-      </div>
-      <div>
-      <p><b>Kleur</b></p>
-      <div className="color-filters">
-        <button style={{ backgroundColor: "red" }} onClick={() => setColor("rood")}></button>
-        <button style={{ backgroundColor: "blue" }} onClick={() => setColor("blauw")}></button>
-        <button style={{ backgroundColor: "green" }} onClick={() => setColor("groen")}></button>
-        <button style={{ backgroundColor: "yellow" }} onClick={() => setColor("geel")}></button>
-        <button style={{ backgroundColor: "gray" }} onClick={() => setColor("grijs")}></button>
-        <button style={{ backgroundColor: "white", border: "1px solid black" }} onClick={() => setColor("wit")}></button>
-        <button style={{ backgroundColor: "black" }} onClick={() => setColor("zwart")}></button>
-        <button style={{ backgroundColor: "brown" }} onClick={() => setColor("bruin")}></button>
-        <button style={{ backgroundColor: "orange" }} onClick={() => setColor("oranje")}></button>
-        <button style={{ backgroundColor: "pink" }} onClick={() => setColor("roze")}></button>
-        <button style={{ backgroundColor: "purple" }} onClick={() => setColor("paars")}></button>
-        <button style={{ background: `url(${images['colors.jpg']})`, backgroundSize: "3rem" }} onClick={() => setColor("")}></button>
-      </div>
-      </div>
-      </div>
-      <div className="products-container">
-        {filteredData.map((product) =>
-          product.category === "halsbanden" && product.price >= parseInt(minprice) && product.price <= parseInt(maxprice) ? (
-            <div className="product" key={Math.random()}>
-              <Link to={`${product.id}`}>
-                <div>
-                  <img alt={product.productname} src={productimages[product.image1]} />
-                  <h1>{product.productname}</h1>
-                  <p>€{product.price}</p>
-                </div>
-              </Link>
-              <div>
-                <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
-                <button onClick={() => dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` }))}>
-                <img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
-              </div>
+        <div className='filters'>
+          <div>
+            <p><b>Prijs</b></p>
+            <div className="sorting">
+              <select onChange={(e) => setSorting(e.target.value)}>
+                <option value="">Sorteer:</option>
+                <option value="low" onClick={() => setSorting("low")}>laag - hoog</option>
+                <option value="high" onClick={() => setSorting("high")}>hoog - laag</option>
+              </select>
             </div>
-          )
-            : null
-        )}
-      </div>
+            <div>
+              € <input onChange={(e) => setMinPrice(e.target.value)}></input>-
+              € <input onChange={(e) => setMaxPrice(e.target.value)}></input>
+            </div>
+          </div>
+          <div>
+            <p><b>Kleur</b></p>
+            <div className="color-filters">
+              <button style={{ backgroundColor: "red" }} onClick={() => setColor("rood")} />
+              <button style={{ backgroundColor: "blue" }} onClick={() => setColor("blauw")} />
+              <button style={{ backgroundColor: "green" }} onClick={() => setColor("groen")} />
+              <button style={{ backgroundColor: "yellow" }} onClick={() => setColor("geel")} />
+              <button style={{ backgroundColor: "gray" }} onClick={() => setColor("grijs")} />
+              <button style={{ backgroundColor: "white", border: "1px solid black" }} onClick={() => setColor("wit")} />
+              <button style={{ backgroundColor: "black" }} onClick={() => setColor("zwart")} />
+              <button style={{ backgroundColor: "brown" }} onClick={() => setColor("bruin")} />
+              <button style={{ backgroundColor: "orange" }} onClick={() => setColor("oranje")} />
+              <button style={{ backgroundColor: "pink" }} onClick={() => setColor("roze")} />
+              <button style={{ backgroundColor: "purple" }} onClick={() => setColor("paars")} />
+              <button style={{ background: `url(${images['colors.jpg']})`, backgroundSize: "3rem" }} onClick={() => setColor("")} />
+            </div>
+          </div>
+        </div>
+        <div className="products-container">
+          {products.map((product) =>
+            product.price >= parseInt(minprice) && product.price <= parseInt(maxprice) ? (
+              <div className="product" key={Math.random()}>
+                <Link to={`${product.id}`}>
+                  <div>
+                    <img alt={product.productname} src={productimages[product.productimage]} />
+                    <h1>{product.productname}</h1>
+                    <p>€{product.price}</p>
+                  </div>
+                </Link>
+                <div>
+                  <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
+                  <button onClick={() => { dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1) }}>
+                    <img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
+                </div>
+              </div>
+            )
+              : null
+          )}
+        </div>
       </div>
     </Wrapper>
   )
@@ -267,5 +268,3 @@ input[type=number] {
   }
 }
 `
-
-export default Product

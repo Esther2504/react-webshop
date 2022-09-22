@@ -1,30 +1,26 @@
 // React, Router & Redux imports
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../utils/cartReducer';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import { searchTerm } from '../../utils/searchReducer';
 
 // Other imports
 import styled from 'styled-components';
 import { data } from '../../products';
 
-// Import all images
+// Import images functie
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
   return images;
 }
-
 const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
 const productimages = importAll(require.context('../../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
 export default function SearchResults() {
   const searchterm = useSelector((state) => state.search.text)
-  const dispatch = useDispatch()
   const [amount, setAmount] = useState(1)
+  const dispatch = useDispatch()
 
   return (
     <Wrapper>
@@ -36,7 +32,7 @@ export default function SearchResults() {
             <div key={Math.random()} className="product">
               <Link to={`../${product.category}/${product.id}`}>
                 <div className="product-info">
-                  <img alt={product.productname} className="img" src={productimages[product.image1]}></img>
+                  <img alt={product.productname} className="img" src={productimages[product.productimage]}></img>
                   <h1>{product.productname}</h1>
                   <p>€{product.price}</p>
                 </div>
@@ -76,7 +72,7 @@ img {
 
 .products-container {
   display: flex;
-  width: 80rem;
+  width: 100%;
   margin: 2rem;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -147,6 +143,7 @@ button {
       align-items: center;
       width: 100%;
       margin: 0;
+      flex-wrap: wrap;
     }
   
     .product {

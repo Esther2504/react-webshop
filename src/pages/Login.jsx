@@ -7,7 +7,7 @@ import { googleSignIn, signIn, signUp } from '../utils/firebase';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import styled from 'styled-components';
 
-// Import all images
+// Images import functie
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });

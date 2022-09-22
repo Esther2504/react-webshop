@@ -14,21 +14,18 @@ import 'react-toastify/dist/ReactToastify.css';
 // Persist imports
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
-import { useParams } from 'react-router-dom';
 
 // Router imports
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
-import Manden from './pages/ProductOverviews/Manden.jsx';
-import Speelgoed from './pages/ProductOverviews/Speelgoed.jsx';
 import HomePage from './pages/HomePage';
 import ShoppingCart from './pages/ShoppingCart';
-import Halsbanden from './pages/ProductOverviews/Halsbanden';
 import Login from './pages/Login';
 import { ProductOverview } from './pages/ProductOverviews/ProductOverview.jsx';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
+import ProductCategory from './pages/ProductOverviews/ProductCategory';
 import SearchResults from './pages/ProductOverviews/SearchResults';
 import NotFound from './pages/NotFound';
-import ProductDetails from './pages/ProductDetails/ProductDetails';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let persistor = persistStore(store);
@@ -45,16 +42,10 @@ root.render(
     <Routes>
       <Route path="/">
         <Route index element={<HomePage />} />
+
         <Route path="/producten" element={<ProductOverview />} />
-
-        <Route path="/manden" element={<Manden />} />
-        <Route path="/manden/:product" element={<ProductDetails />} />
-
-        <Route path="/speelgoed" element={<Speelgoed />} />
-        <Route path="/speelgoed/:product" element={<ProductDetails />} />
-
-        <Route path="/halsbanden" element={<Halsbanden />} />
-        <Route path="/halsbanden/:product" element={<ProductDetails />} />
+        <Route path="/:category" element={<ProductCategory />} />
+        <Route path="/:category/:product" element={<ProductDetails />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/winkelwagen" element={<ShoppingCart />} />

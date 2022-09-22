@@ -1,22 +1,19 @@
 // React, Router & Redux imports
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../utils/cartReducer';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 // Other imports
 import styled from 'styled-components';
 import { data } from '../../products';
 
-// Import all images
+// Images import functie
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
   return images;
 }
-
 const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
 const productimages = importAll(require.context('../../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
@@ -40,7 +37,7 @@ export function ProductOverview() {
   }
 
   // Bij leeghalen velden worden alle producten weer getoond
-  if (minprice === "" ) {
+  if (minprice === "") {
     setMinPrice("0")
   } else if (maxprice === "") {
     setMaxPrice("1500")
@@ -56,60 +53,60 @@ export function ProductOverview() {
     <Wrapper>
       <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> Producten</p>
       <div className="container">
-      <div className='filters'>
-        <div>
-        <p><b>Prijs</b></p> 
-        <div className="sorting">
-          <select onChange={(e) => setSorting(e.target.value)}>
-      <option value="">Sorteer:</option>
-      <option value="low" onClick={() => setSorting("low")}>laag - hoog</option>
-      <option value="high" onClick={() => setSorting("high")}>hoog - laag</option>
-      </select>
-      </div>
-      <div>
-      € <input onChange={(e) => setMinPrice(e.target.value)}></input>-
-      € <input onChange={(e) => setMaxPrice(e.target.value)}></input>
-      </div>
-      </div>
-      <div>
-      <p><b>Kleur</b></p>
-      <div className="color-filters">
-        <button style={{ backgroundColor: "red" }} onClick={() => setColor("rood")}></button>
-        <button style={{ backgroundColor: "blue" }} onClick={() => setColor("blauw")}></button>
-        <button style={{ backgroundColor: "green" }} onClick={() => setColor("groen")}></button>
-        <button style={{ backgroundColor: "yellow" }} onClick={() => setColor("geel")}></button>
-        <button style={{ backgroundColor: "gray" }} onClick={() => setColor("grijs")}></button>
-        <button style={{ backgroundColor: "white", border: "1px solid black" }} onClick={() => setColor("wit")}></button>
-        <button style={{ backgroundColor: "black" }} onClick={() => setColor("zwart")}></button>
-        <button style={{ backgroundColor: "brown" }} onClick={() => setColor("bruin")}></button>
-        <button style={{ backgroundColor: "orange" }} onClick={() => setColor("oranje")}></button>
-        <button style={{ backgroundColor: "pink" }} onClick={() => setColor("roze")}></button>
-        <button style={{ backgroundColor: "purple" }} onClick={() => setColor("paars")}></button>
-        <button style={{ background: `url(${images['colors.jpg']})`, backgroundSize: "3rem" }} onClick={() => setColor("")}></button>
-      </div>
-      </div>
-      </div>
-      <div className="products-container">
-        {filteredData.map((product) =>
-          product.price >= parseInt(minprice) && product.price <= parseInt(maxprice) ? (
-            <div className="product" key={Math.random()}>
-              <Link to={`/${product.category}/${product.id}`}>
-                <div>
-                  <img alt={product.productname} src={productimages[product.image1]} />
-                  <h1>{product.productname}</h1>
-                  <p>€{product.price}</p>
-                </div>
-              </Link>
-              <div>
-                <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
-                <button onClick={() => {dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1);}}>
-                  <img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
-              </div>
+        <div className='filters'>
+          <div>
+            <p><b>Prijs</b></p>
+            <div className="sorting">
+              <select onChange={(e) => setSorting(e.target.value)}>
+                <option value="">Sorteer:</option>
+                <option value="low" onClick={() => setSorting("low")}>laag - hoog</option>
+                <option value="high" onClick={() => setSorting("high")}>hoog - laag</option>
+              </select>
             </div>
-          )
-            : null
-        )}
-      </div>
+            <div>
+              € <input onChange={(e) => setMinPrice(e.target.value)}></input>-
+              € <input onChange={(e) => setMaxPrice(e.target.value)}></input>
+            </div>
+          </div>
+          <div>
+            <p><b>Kleur</b></p>
+            <div className="color-filters">
+              <button style={{ backgroundColor: "red" }} onClick={() => setColor("rood")} />
+              <button style={{ backgroundColor: "blue" }} onClick={() => setColor("blauw")} />
+              <button style={{ backgroundColor: "green" }} onClick={() => setColor("groen")} />
+              <button style={{ backgroundColor: "yellow" }} onClick={() => setColor("geel")} />
+              <button style={{ backgroundColor: "gray" }} onClick={() => setColor("grijs")} />
+              <button style={{ backgroundColor: "white", border: "1px solid black" }} onClick={() => setColor("wit")} />
+              <button style={{ backgroundColor: "black" }} onClick={() => setColor("zwart")} />
+              <button style={{ backgroundColor: "brown" }} onClick={() => setColor("bruin")} />
+              <button style={{ backgroundColor: "orange" }} onClick={() => setColor("oranje")} />
+              <button style={{ backgroundColor: "pink" }} onClick={() => setColor("roze")} />
+              <button style={{ backgroundColor: "purple" }} onClick={() => setColor("paars")} />
+              <button style={{ background: `url(${images['colors.jpg']})`, backgroundSize: "3rem" }} onClick={() => setColor("")} />
+            </div>
+          </div>
+        </div>
+        <div className="products-container">
+          {filteredData.map((product) =>
+            product.price >= parseInt(minprice) && product.price <= parseInt(maxprice) ? (
+              <div className="product" key={Math.random()}>
+                <Link to={`/${product.category}/${product.id}`}>
+                  <div>
+                    <img alt={product.productname} src={productimages[product.productimage]} />
+                    <h1>{product.productname}</h1>
+                    <p>€{product.price}</p>
+                  </div>
+                </Link>
+                <div>
+                  <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
+                  <button onClick={() => { dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1); }}>
+                    <img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
+                </div>
+              </div>
+            )
+              : null
+          )}
+        </div>
       </div>
     </Wrapper>
   )

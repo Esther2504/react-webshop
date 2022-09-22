@@ -12,7 +12,7 @@ function importAll(r) {
   return images;
 }
 
-const smimages = importAll(require.context('../assets/images/social-media', false, /\.(png|jpe?g|svg)$/));
+const images = importAll(require.context('../assets/images/social-media', false, /\.(png|jpe?g|svg)$/));
 
 export default function Footer() {
   return (
@@ -33,10 +33,10 @@ export default function Footer() {
       </div>
       <div className="social-media">
         <p>Wil je ons volgen?</p>
-        <img alt="facebook" src={smimages["facebook.svg"]} />
-        <img alt="instagram" src={smimages["instagram.svg"]} />
-        <img alt="linkedin" src={smimages["linkedin.svg"]} />
-        <img alt="twitter" src={smimages["twitter.svg"]} />
+        <img alt="facebook" src={images["facebook.svg"]} />
+        <img alt="instagram" src={images["instagram.svg"]} />
+        <img alt="linkedin" src={images["linkedin.svg"]} />
+        <img alt="twitter" src={images["twitter.svg"]} />
       </div>
     </Wrapper>
   )

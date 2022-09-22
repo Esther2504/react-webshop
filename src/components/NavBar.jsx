@@ -1,72 +1,28 @@
 // React, Router & Redux imports
-import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
-import { searchTerm } from '../utils/searchReducer';
+import React from 'react'
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 // Other imports
 import styled from 'styled-components';
-import { SignOut } from '../utils/firebase';
-import { getAuth } from 'firebase/auth';
 import { data } from '../products';
-
-// Import all images
-function importAll(r) {
-  let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  return images;
-}
-
-const images = importAll(require.context('../assets/images', false, /\.(png|jpe?g|svg)$/));
+import TopNav from './TopNav';
+import BottomNav from './BottomNav';
 
 export default function NavBar() {
-  const [openLogin, setOpenLogin] = useState(false);
-  const [hamburger, setHamburger] = useState(false);
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 750)
   const products = useSelector((state) => state.cart)
   const searchterm = useSelector((state) => state.search.text)
-  const dispatch = useDispatch()
 
-  // Doorgeven productaantal winkelmand aan styled components
+  // Doorgeven productenaantal winkelmand aan styled components
   let total = 0;
   data.forEach((product) => {
     products.filter(cartproduct => (product.id === cartproduct.id) ? (
       total += Number(cartproduct.amount)
-    )
-      : null
+    ) : null
     )
   })
 
-  const toggleLogin = () => {
-    setOpenLogin(!openLogin);
-  };
-
-  const handleSignOut = () => {
-    SignOut()
-    toggleLogin()
-  }
-
-  // Om het hamburger menu te laten zien op basis van schermgrootte
-  const updateMedia = () => {
-    setDesktop(window.innerWidth > 750);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
-  }, []);
-
-
-  // Als de gebruiker zoekt zonder input in de zoekbalk, wordt hij doorverwezen naar de productoverview pagina
-  let link = "/zoekresultaten"
-
-  if (searchterm == undefined) {
-    link = "/producten"
-  } else {
-    link = "/zoekresultaten"
-  }
-
-  // Zoeken kan ook met enter key i.p.v. button
+  // Zoeken met enter key
   useEffect(() => {
     document.querySelector(".input").addEventListener("keyup", function (event) {
       event.preventDefault();
@@ -76,73 +32,10 @@ export default function NavBar() {
     });
   }, [searchterm])
 
-  const auth = getAuth();
-  const user = auth.currentUser;
-
   return (
     <Wrapper total={total}>
-      <nav className="top-nav">
-        <Link to="/">
-          <img alt="HappyPaws logo" src={images["logo-3.png"]} />
-        </Link>
-        <div className="searchbar">
-          <input className="input" onChange={(e) => dispatch(searchTerm({ text: e.target.value }))} /><Link className="search-link" to={link}><button>Zoek</button></Link>
-        </div>
-        <div className="login-cart">
-          <img alt="login" onClick={toggleLogin} className="login" src={images["user-login.svg"]} />
-          {openLogin ? (
-            <div className="loginpopup">
-              <p className="close" onClick={toggleLogin}>X</p>
-              {user ? (
-                <>
-                  <p>Ingelogd als {user.displayName ? user.displayName : user.email}</p>
-                  <button onClick={handleSignOut}>Uitloggen</button>
-                </>
-              )
-                : <Link to="/login"><button onClick={toggleLogin}>Inloggen</button></Link>
-              }
-            </div>
-          ) : null}
-          <Link to="/winkelwagen">
-            <img alt="winkelwagen" className="cart" src={images["shopping-cart.svg"]} />
-          </Link>
-        </div>
-      </nav>
-
-      {isDesktop ? (
-        <ul className="bottom-nav-desktop">
-          <Link to="/"><li>Home</li></Link>
-          <Link to="/manden"><li>Manden</li></Link>
-          <Link to="/speelgoed"><li>Speelgoed</li></Link>
-          <Link to="/halsbanden"><li>Halsbanden</li></Link>
-        </ul>
-      ) : (
-        <div>
-          <div className="searchbar-mobile">
-            <input onChange={(e) => dispatch(searchTerm({ text: e.target.value }))}></input><Link to={link}><button>Zoek</button></Link>
-          </div>
-          <button onClick={() => setHamburger(!hamburger)} className="hamburger">
-            {!hamburger ? <i className='hamburger-menu'></i> : (
-              <>
-                <i className='hamburger-menu-close'></i>
-                <ul className="bottom-nav-mobile">
-                  <hr></hr>
-                  <Link to="/"><li>Home</li></Link>
-                  <hr></hr>
-                  <Link to="/manden"><li>Manden</li></Link>
-                  <hr></hr>
-                  <Link to="/speelgoed"><li>Speelgoed</li></Link>
-                  <hr></hr>
-                  <Link to="/halsbanden"><li>Halsbanden</li></Link>
-                  <hr></hr>
-                </ul>
-              </>
-            )
-            }
-          </button>
-        </div>
-      )}
-
+      <TopNav />
+      <BottomNav />
     </Wrapper>
   )
 }
@@ -150,6 +43,7 @@ export default function NavBar() {
 const Wrapper = styled.div`
 .top-nav {
   width: 100vw;
+
   img {
     width: 5rem;
     cursor: pointer;
@@ -182,7 +76,7 @@ const Wrapper = styled.div`
   right: 2rem;
   padding: 0.2rem;
   z-index: 6;
-
+  
   .signin {
     width: 8rem;
     height: 5rem;
@@ -218,7 +112,6 @@ const Wrapper = styled.div`
   margin: auto;
   position: relative;
   left: 7rem;
-
   input {
     height: 1.2rem;
     width: 20rem;
@@ -413,6 +306,7 @@ button {
   .bottom-nav a {
     display: none;
   }
+
   .hamburger {
     display: block;
   }
@@ -437,18 +331,15 @@ button {
   content: '';
   transform: rotate(90deg);
 }
-
 }
 
 @media only screen and (max-width: 430px) {
   .searchbar {
     display: none;
   }
-
   .searchbar-mobile {
     width: 19rem;
   }
-
   .hamburger {
     width: 100%;
   }

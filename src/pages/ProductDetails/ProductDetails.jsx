@@ -8,62 +8,61 @@ import { addProduct } from '../../utils/cartReducer'
 // Overige imports
 import styled from 'styled-components'
 import { data } from '../../products';
-import { useEffect } from 'react';
 import NotFound from '../NotFound';
 
-// Import all images
+// Images import functie
 function importAll(r) {
-    let images = {};
-    r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-    return images;
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
 }
 const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
 const productimages = importAll(require.context('../../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
 export default function ProductDetails() {
-    const [slide, setSlide] = useState("1")
-    const dispatch = useDispatch();
+  const [slide, setSlide] = useState("product")
+  const dispatch = useDispatch();
 
-    let amount = 1
+  // Om het productaantal te veranderen
+  let amount = 1
 
-    console.log(data)
+  const { product } = useParams();
+  const item = data.find(item => item.id === product);
 
-    const { product } = useParams();
-    const item = data.find(item => item.id === product);
-
-    const nextSlide = () => {
-        if (slide === "1") {
-            setSlide("2")
-        } else {
-            setSlide("1")
-        }
+  // Image slider
+  const nextSlide = () => {
+    if (slide === "product") {
+      setSlide("dog")
+    } else {
+      setSlide("product")
     }
+  }
 
-    return (
-      (item ? 
-        <Wrapper>
-            <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item?.category}`}>{item?.category[0].toUpperCase() + item?.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item?.productname}</p>
-            <div className="container">
-                <div className="slide-container">
-                    <div className="slide-images">
-                        <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
-                        <img alt="product" src={productimages[item[`image${slide}`]]} />
-                        <img alt="pijl rechts" className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
-                    </div>
-                    <p onClick={nextSlide}>● ●</p></div>
-                <div className="product-info">
-                    <h1>{item?.productname}</h1>
-                    <h2>€{item?.price}</h2>
-                    <p>{item?.description}</p>
-                    <input min="1" placeholder="1" onChange={(e) => amount = e.target.value} type="number" />
-                    <button onClick={() => dispatch(addProduct({ id: `${item?.id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
-                </div>
+  return (
+    (item ?
+      <Wrapper>
+        <p className="breadcrumbs"><Link to="/">Home</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to="/producten">Producten</Link> <img alt="" src={images['right-arrow.svg']} /> <Link to={`/${item.category}`}>{item.category[0].toUpperCase() + item.category.substring(1)}</Link> <img alt="" src={images['right-arrow.svg']} /> {item.productname}</p>
+        <div className="container">
+          <div className="slide-container">
+            <div className="slide-images">
+              <img alt="pijl links" className="slide-arrow left" onClick={nextSlide} src={images['arrow-left.svg']} />
+              <img alt="product" src={productimages[item[`${slide}image`]]} />
+              <img alt="pijl rechts" className="slide-arrow right" onClick={nextSlide} src={images['arrow-right.svg']} />
             </div>
-        </Wrapper>
-        :
-<NotFound />
-      )
+            <p onClick={nextSlide}>● ●</p></div>
+          <div className="product-info">
+            <h1>{item.productname}</h1>
+            <h2>€{item.price}</h2>
+            <p>{item.description}</p>
+            <input min="1" placeholder="1" onChange={(e) => amount = e.target.value} type="number" />
+            <button onClick={() => dispatch(addProduct({ id: `${item.id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
+          </div>
+        </div>
+      </Wrapper>
+      :
+      <NotFound />
     )
+  )
 }
 
 const Wrapper = styled.div`
@@ -199,6 +198,5 @@ p {
     margin-top: -3rem;
     width: 100%;
   }
- 
 }
 `

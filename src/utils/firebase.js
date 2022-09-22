@@ -22,10 +22,8 @@ export const auth = getAuth(app);
 
 export const SignOut = () => {
    signOut(auth)
-      .then(function () {
-      
+      .then(function () { 
       }, function (error) {
-         
       });
 }
 
@@ -33,20 +31,15 @@ export const googleSignIn = () => {
    const provider = new GoogleAuthProvider();
    signInWithPopup(auth, provider)
       .then((result) => {
-        
-
       })
-      .catch((error) => {
-               
+      .catch((error) => {       
       })
 };
 
 export const signIn = (email, password) => {
    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-         
          const user = userCredential.user;
-         
       })
       .catch((error) => {
          const errorCode = error.code;

@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-// Import all images
+// Images import functie
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
   return images;
 }
-
 const images = importAll(require.context('../assets/images', false, /\.(png|jpe?g|svg)$/));
 
 export default function NotFound() {
@@ -25,7 +24,6 @@ text-align: center;
 
 @media only screen and (max-width: 870px) {
   padding-bottom: 15rem;
-
   img {
     width: 80%;
   }

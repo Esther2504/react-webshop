@@ -8,10 +8,8 @@ function App() {
     <>
     <GlobalStyle />
       <NavBar />
-      <div>
       <Outlet />
       <Footer />
-      </div>
     </>
   );
 }
