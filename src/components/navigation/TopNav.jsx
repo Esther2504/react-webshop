@@ -2,10 +2,10 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux'
-import { searchTerm } from '../utils/searchReducer';
+import { searchTerm } from '../../utils/searchReducer';
 
-// Other imports
-import { SignOut } from '../utils/firebase';
+// Overige imports
+import { SignOut } from '../../utils/firebase';
 import { getAuth } from 'firebase/auth';
 
 // Import images functie
@@ -14,7 +14,7 @@ function importAll(r) {
     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
     return images;
 }
-const images = importAll(require.context('../assets/images', false, /\.(png|jpe?g|svg)$/));
+const images = importAll(require.context('../../assets/images', false, /\.(png|jpe?g|svg)$/));
 
 export default function TopNav() {
     const [openLogin, setOpenLogin] = useState(false)

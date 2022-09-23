@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
-// Other imports
+// Overige imports
 import { googleSignIn, signIn, signUp } from '../utils/firebase';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import styled from 'styled-components';

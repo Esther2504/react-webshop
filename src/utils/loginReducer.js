@@ -4,8 +4,8 @@ const loginSlice = createSlice({
   name: 'login',
   initialState: [],
   reducers: {
-    updateUser: (state, action) => {   
-      return {...action.payload};  
+    updateUser: (state, action) => {
+      return { ...action.payload };
     },
     signOutUser: (state) => {
       return [];

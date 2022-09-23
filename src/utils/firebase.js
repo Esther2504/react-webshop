@@ -22,7 +22,7 @@ export const auth = getAuth(app);
 
 export const SignOut = () => {
    signOut(auth)
-      .then(function () { 
+      .then(function () {
       }, function (error) {
       });
 }
@@ -32,7 +32,7 @@ export const googleSignIn = () => {
    signInWithPopup(auth, provider)
       .then((result) => {
       })
-      .catch((error) => {       
+      .catch((error) => {
       })
 };
 

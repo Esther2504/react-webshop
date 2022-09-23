@@ -12,9 +12,9 @@ const images = importAll(require.context('../assets/images', false, /\.(png|jpe?
 export default function NotFound() {
   return (
     <Wrapper>
-    <h1>404</h1>
-    <h2>Pagina niet gevonden</h2>
-    <img alt="" src={images['empty-cart-image.png']} />
+      <h1>404</h1>
+      <h2>Pagina niet gevonden</h2>
+      <img alt="" src={images['empty-cart-image.png']} />
     </Wrapper>
   )
 }

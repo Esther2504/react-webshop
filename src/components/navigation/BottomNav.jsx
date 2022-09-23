@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux'
-import { searchTerm } from '../utils/searchReducer';
+import { searchTerm } from '../../utils/searchReducer';
 
 export default function BottomNav() {
     const [hamburger, setHamburger] = useState(false);

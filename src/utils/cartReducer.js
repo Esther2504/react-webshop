@@ -10,7 +10,7 @@ const cartSlice = createSlice({
       if (productCheck) {
         productCheck.amount += (parseInt(action.payload.amount))
       } else {
-        state.push({id: action.payload.id, amount: (parseInt(action.payload.amount))});
+        state.push({ id: action.payload.id, amount: (parseInt(action.payload.amount)) });
       }
       toast.success("Product(en) toegevoegd!")
     },

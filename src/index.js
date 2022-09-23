@@ -21,39 +21,39 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ShoppingCart from './pages/ShoppingCart';
 import Login from './pages/Login';
-import { ProductOverview } from './pages/ProductOverviews/ProductOverview.jsx';
-import ProductDetails from './pages/ProductDetails/ProductDetails';
-import ProductCategory from './pages/ProductOverviews/ProductCategory';
-import SearchResults from './pages/ProductOverviews/SearchResults';
+import { ProductOverview } from './pages/productoverviews/ProductOverview.jsx';
+import ProductDetails from './pages/productdetails/ProductDetails';
+import ProductCategory from './pages/productoverviews/ProductCategory';
+import SearchResults from './pages/productoverviews/SearchResults';
 import NotFound from './pages/NotFound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let persistor = persistStore(store);
 
-root.render( 
+root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <HashRouter>
-    <ScrollToTop />
-    <ToastContainer position="bottom-right" hideProgressBar={true} autoClose={1500} newestOnTop={true}/>
-    <PersistGate loading={null} persistor={persistor}>
-    <App />
-    </PersistGate>
-    <Routes>
-      <Route path="/">
-        <Route index element={<HomePage />} />
+      <HashRouter>
+        <ScrollToTop />
+        <ToastContainer position="bottom-right" hideProgressBar={true} autoClose={1500} newestOnTop={true} />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
+        <Routes>
+          <Route path="/">
+            <Route index element={<HomePage />} />
 
-        <Route path="/producten" element={<ProductOverview />} />
-        <Route path="/:category" element={<ProductCategory />} />
-        <Route path="/:category/:product" element={<ProductDetails />} />
+            <Route path="/producten" element={<ProductOverview />} />
+            <Route path="/:category" element={<ProductCategory />} />
+            <Route path="/:category/:product" element={<ProductDetails />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/winkelwagen" element={<ShoppingCart />} />
-        <Route path="/zoekresultaten" element={<SearchResults />} />
-        <Route path="*" element={<NotFound />} />
-        </Route>
-    </Routes>
-    </HashRouter>
+            <Route path="/login" element={<Login />} />
+            <Route path="/winkelwagen" element={<ShoppingCart />} />
+            <Route path="/zoekresultaten" element={<SearchResults />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </HashRouter>
     </Provider>
   </React.StrictMode>
 );

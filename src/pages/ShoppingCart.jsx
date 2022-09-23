@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { removeProduct, clearCart, changeProduct } from '../utils/cartReducer';
 import { Link } from 'react-router-dom';
 
-// Other imports
+// Overige imports
 import styled from 'styled-components';
 import { data } from '../products';
 

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
-// Other imports
+// Overige imports
 import styled from 'styled-components';
 
 // Images import functie

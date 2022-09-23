@@ -1,11 +1,10 @@
 // React, Router & Redux imports
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
-// Other imports
+// Overige imports
 import styled from 'styled-components';
-import { data } from '../products';
+import { data } from '../../products';
 import TopNav from './TopNav';
 import BottomNav from './BottomNav';
 

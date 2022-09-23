@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../utils/cartReducer';
 
-// Other imports
+// Overige imports
 import styled from 'styled-components';
 import { data } from '../../products';
 
@@ -25,28 +25,28 @@ export default function SearchResults() {
   return (
     <Wrapper>
       <>
-      <h1>Zoekresultaten voor "{searchterm}"</h1>
-      <div className="products-container">
-        {data.map((product) =>
-          (product.keywords).includes(searchterm.toLowerCase()) ? (
-            <div key={Math.random()} className="product">
-              <Link to={`../${product.category}/${product.id}`}>
-                <div className="product-info">
-                  <img alt={product.productname} className="img" src={productimages[product.productimage]}></img>
-                  <h1>{product.productname}</h1>
-                  <p>€{product.price}</p>
+        <h1>Zoekresultaten voor "{searchterm}"</h1>
+        <div className="products-container">
+          {data.map((product) =>
+            (product.keywords).includes(searchterm.toLowerCase()) ? (
+              <div key={Math.random()} className="product">
+                <Link to={`../${product.category}/${product.id}`}>
+                  <div className="product-info">
+                    <img alt={product.productname} className="img" src={productimages[product.productimage]}></img>
+                    <h1>{product.productname}</h1>
+                    <p>€{product.price}</p>
+                  </div>
+                </Link>
+                <div>
+                  <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
+                  <button onClick={() => { dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1) }}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
                 </div>
-              </Link>
-              <div>
-                <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
-                <button onClick={() => {dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1)}}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
               </div>
-            </div>
-          )
-            : null
-        )}
-      </div>
-      </> 
+            )
+              : null
+          )}
+        </div>
+      </>
     </Wrapper>
   )
 }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../utils/cartReducer';
 
-// Other imports
+// Overige imports
 import styled from 'styled-components';
 import { data } from '../../products';
 

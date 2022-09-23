@@ -1,4 +1,4 @@
-import NavBar from './components/NavBar.jsx';
+import NavBar from './components/navigation/NavBar.jsx';
 import Footer from './components/Footer.jsx';
 import { GlobalStyle } from './styles/globalStyles.js';
 import { Outlet } from 'react-router-dom'
@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
 function App() {
   return (
     <>
-    <GlobalStyle />
+      <GlobalStyle />
       <NavBar />
       <Outlet />
       <Footer />
