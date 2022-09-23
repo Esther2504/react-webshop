@@ -78,7 +78,7 @@ export function Product({ id, amount }) {
           <div key={Math.random()} className="product">
             <img alt={product.productname} className="img" src={productimages[product.productimage]} />
             <div className="product-info">
-              <Link to={`../${product.category}/product${product.id}`}>
+              <Link to={`../${product.category}/${product.id}`}>
                 <h2>{product.productname}</h2>
                 <p>€{product.price}</p>
               </Link>
