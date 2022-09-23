@@ -34,8 +34,8 @@ export default function HomePage() {
 
   return (
     <Wrapper>
-      <div className="heading">
-        <div className="heading-message">
+      <div className="banner">
+        <div className="banner-message">
           <h1>Alleen het beste voor je hond</h1>
           <Link to="/producten"><button>Shop now</button></Link>
         </div>
@@ -68,14 +68,14 @@ margin: 3rem auto 0 auto;
 display: flex;
 flex-direction: column;
 
-.heading {
+.banner {
   display: flex;
   flex-direction: row;
   color: #34556d;
   margin: auto;
 }
 
-.heading-message {
+.banner-message {
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -107,6 +107,7 @@ button {
     width: 20rem;
     text-decoration: none;
     text-align: center;
+    transition: all .2s ease-in-out;
   }
   
   img {
@@ -137,6 +138,12 @@ transition: all 1s;
   opacity: 1;
 }
 
+.category-container {
+  a:hover {
+  transform: scale(1.05);
+  }
+}
+
 @media(prefers-reducer-motion) {
   .hidden {
     transition: none;
@@ -151,11 +158,11 @@ transition: all 1s;
   align-items: center;
   }
 
-  .heading {
+  .banner {
     flex-direction: column;
     align-items: center;
 
-    .heading-message {
+    .banner-message {
       text-align: center;
       align-items: center;
     }

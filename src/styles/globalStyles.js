@@ -26,5 +26,10 @@ button {
     background-color: #49abcc;
     border: 1px solid white;
     color: white;
+    transition: all .2s ease-in-out;
+  }
+
+  button:hover {
+    transform: scale(1.05);
   }
 `

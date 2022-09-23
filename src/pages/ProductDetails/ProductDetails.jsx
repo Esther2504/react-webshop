@@ -55,7 +55,7 @@ export default function ProductDetails() {
             <h2>€{item.price}</h2>
             <p>{item.description}</p>
             <input min="1" placeholder="1" onChange={(e) => amount = e.target.value} type="number" />
-            <button onClick={() => dispatch(addProduct({ id: `${item.id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
+            <button onClick={() => dispatch(addProduct({ id: `${item.id}`, amount: `${amount}` }))}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> In winkelwagen</button>
           </div>
         </div>
       </Wrapper>

@@ -39,7 +39,7 @@ export default function SearchResults() {
                 </Link>
                 <div>
                   <input min="1" placeholder="1" onChange={(e) => setAmount(e.target.value)} type="number" />
-                  <button onClick={() => { dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1) }}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> Bestel</button>
+                  <button onClick={() => { dispatch(addProduct({ id: `${product.id}`, amount: `${amount}` })); setAmount(1) }}><img alt="winkelmandje" className="cart" src={images['shopping-cart-add.svg']} /> In winkelwagen</button>
                 </div>
               </div>
             )
@@ -110,6 +110,11 @@ img {
   flex-direction: column;
   background-color: white;
   max-width: 100%;
+  transition: all .2s ease-in-out;
+}
+
+.product:hover {
+  transform: scale(1.05);
 }
 
 p {
