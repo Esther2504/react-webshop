@@ -29,11 +29,11 @@ export function ProductOverview() {
   if (sorting === "low") {
     data.sort(function (a, b) {
       return a.price - b.price;
-    });
+    })
   } else if (sorting === "high") {
     data.sort(function (a, b) {
       return b.price - a.price;
-    });
+    })
   }
 
   // Bij leeghalen velden worden alle producten weer getoond
