@@ -131,7 +131,7 @@ button {
 
 .hidden {
 opacity: 0;
-transition: all 1s;
+transition: all 3s;
 }
 
 .show {

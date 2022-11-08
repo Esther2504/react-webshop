@@ -21,10 +21,10 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ShoppingCart from './pages/ShoppingCart';
 import Login from './pages/Login';
-import { ProductOverview } from './pages/productoverviews/ProductOverview.jsx';
-import ProductDetails from './pages/productdetails/ProductDetails';
-import ProductCategory from './pages/productoverviews/ProductCategory';
-import SearchResults from './pages/productoverviews/SearchResults';
+import { ProductOverview } from './pages/ProductOverviews/ProductOverview.jsx';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
+import ProductCategory from './pages/ProductOverviews/ProductCategory';
+import SearchResults from './pages/ProductOverviews/SearchResults';
 import NotFound from './pages/NotFound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
