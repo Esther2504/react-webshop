@@ -17,6 +17,7 @@ const images = importAll(require.context('../assets/images/social-media', false,
 export default function Footer() {
   return (
     <Wrapper>
+      <LinksWrapper>
       <div>
         <p>Klantenservice</p>
         <p>Contact opnemen</p>
@@ -38,63 +39,69 @@ export default function Footer() {
         <img alt="linkedin" src={images["linkedin.svg"]} />
         <img alt="twitter" src={images["twitter.svg"]} />
       </div>
+      </LinksWrapper>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 7rem;
-  background-color: #49abcc;
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+background-color: #49abcc;
+color: white;
+padding-top: 2vh;
+`
+
+const LinksWrapper = styled.div`
+width: 80%;
+margin: 20px auto;
+display: flex;
+justify-content: space-between;
+font-size: 1.3rem;
+
+a {
+  text-decoration: none;
   color: white;
-  display: flex;
-  justify-content: space-evenly;
-  padding-top: 2rem;
-
-  a {
-    text-decoration: none;
-    color: white;
-    display: block;
-    cursor: pointer;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-  p {
-    margin: 0;
-    cursor: pointer;
-  }
-  p:first-child {
-    font-weight: bold;
+  display: block;
+  cursor: pointer;
   }
 
-  p:hover {
+  a:hover {
     text-decoration: underline;
   }
 
-  p:first-child:hover {
-    text-decoration: none;
-  }
+p {
+  margin: 0;
+  cursor: pointer;
+}
+p:first-child {
+  font-weight: bold;
+}
 
-  img {
-    width: 2rem;
-  }
+p:hover {
+  text-decoration: underline;
+}
 
-  .social-media img {
-    padding: 0.2rem;
-    cursor: pointer;
-  }
+p:first-child:hover {
+  text-decoration: none;
+}
 
-  @media only screen and (max-width: 750px) {
-    flex-direction: column;
-    height: 20rem;
-    align-items: center;
-    padding: 0;
-    text-align: center;
-  }
+img {
+  width: 2rem;
+}
+
+.social-media img {
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 750px) {
+  flex-direction: column;
+  height: 20rem;
+  align-items: center;
+  padding: 0;
+  text-align: center;
+}
 `

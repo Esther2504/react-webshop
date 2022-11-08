@@ -62,7 +62,7 @@ export default function HomePage() {
 }
 
 const Wrapper = styled.div`
-width: 90%;
+width: 80%;
 min-height: 100vh;
 margin: 3rem auto 0 auto;
 display: flex;
@@ -72,58 +72,59 @@ flex-direction: column;
   display: flex;
   flex-direction: row;
   color: #34556d;
-  margin: auto;
+  margin: 0;
 }
 
 .banner-message {
   display: flex;
+  width: 60%;
   flex-direction: column;
   align-self: center;
+ font-size: 2.3rem;
 }
 
 .homepage-image {
-  width: 26rem;
+  width: 40%;
   jusitfy-self: flex-end;
 }
 
 button {
-  width: 6rem;
-  height: 3rem;
+  width: 180px;
+  height: 50px;
   background-color: #49abcc;
   color: white;
   border-style: none;
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
 .category-container {
-  margin: 5rem auto;
+  margin: 5rem 0;
   display: flex;
-  width: 90%;
   justify-content: space-between;
 
   a {
-    width: 20rem;
+    width: 90%;
     text-decoration: none;
     text-align: center;
     transition: all .2s ease-in-out;
   }
   
   img {
-    width: 20rem;
-    background-size: 20rem;
+    width: 90%;
+    background-size: 33vw;
     border: 3px solid #49abcc;
-    border-radius: 20rem;
+    border-radius: 99%;
   }
 
   p {
     color: white;
     background-color: #49abcc;
     text-align: center;
-    margin: 1rem auto;
-    font-size: 1.1rem;
-    width: 9rem;
+    margin: 10px auto;
+    font-size: 1.3rem;
+    width: 50%;
     padding: 0.2rem;
     border-radius: 1rem;
   }
@@ -156,6 +157,10 @@ transition: all 3s;
   .category-container {
   flex-direction: column;
   align-items: center;
+
+  a {
+    margin: 30px;
+  }
   }
 
   .banner {

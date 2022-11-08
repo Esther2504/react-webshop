@@ -152,6 +152,7 @@ button {
     position: relative;
     text-decoration: none;
     color: white;
+    font-size: 1.15rem;
   }
   
   a:before {
