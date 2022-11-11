@@ -8,7 +8,7 @@ import { signOut } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-   apiKey: "AIzaSyCm1qXmCSPHeUMKTkgqHNGqwK2JAG9-PdQ",
+   apiKey: process.env.REACT_APP_API_KEY,
    authDomain: "webshop-happypaws.firebaseapp.com",
    projectId: "webshop-happypaws",
    storageBucket: "webshop-happypaws.appspot.com",
