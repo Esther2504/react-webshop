@@ -93,7 +93,7 @@ export default function Product() {
         <div className="products-container">
           {products.map((product) =>
             product.price >= parseInt(minprice) && product.price <= parseInt(maxprice) ? (
-              <div className="product" key={Math.random()}>
+              <div className="product" key={product.id}>
                 <Link to={`${product.id}`}>
                   <div>
                     <img alt={product.productname} src={productimages[product.productimage]} />

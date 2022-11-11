@@ -29,7 +29,7 @@ export default function SearchResults() {
         <div className="products-container">
           {data.map((product) =>
             (product.keywords).includes(searchterm.toLowerCase()) ? (
-              <div key={Math.random()} className="product">
+              <div key={product.id} className="product">
                 <Link to={`../${product.category}/${product.id}`}>
                   <div className="product-info">
                     <img alt={product.productname} className="img" src={productimages[product.productimage]}></img>

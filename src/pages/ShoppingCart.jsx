@@ -43,7 +43,7 @@ export default function ShoppingCart() {
         <>
           <div>
             {products.map((cartproduct) =>
-              <Product key={Math.random()} {...cartproduct} />)
+              <Product key={cartproduct.id} {...cartproduct} />)
             }
           </div>
           <button className="clear-cart" onClick={() => dispatch(clearCart())}>Leeg winkelwagen</button>
@@ -75,7 +75,7 @@ export function Product({ id, amount }) {
     <ProductsWrapper>
       {data.map((product) =>
         product.id === `${id}` ? (
-          <div key={Math.random()} className="product">
+          <div key={product.id} className="product">
             <img alt={product.productname} className="img" src={productimages[product.productimage]} />
             <div className="product-info">
               <Link to={`../${product.category}/${product.id}`}>
