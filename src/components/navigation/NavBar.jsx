@@ -25,7 +25,7 @@ export default function NavBar() {
   useEffect(() => {
     document.querySelector(".input").addEventListener("keyup", function (event) {
       event.preventDefault();
-      if (event.key === 'Enter') {
+      if (event.key === 'Enter' && searchterm != "") {
         document.querySelector(".search-link").click();
       }
     });
@@ -44,12 +44,12 @@ const Wrapper = styled.div`
   width: 100vw;
 
   img {
-    width: 5rem;
+    width: 6rem;
     cursor: pointer;
   }
 
   .cart, .login {
-    width: 2rem;
+    width: 2.5rem;
     margin-left: 1rem;
   }
 
@@ -112,7 +112,7 @@ const Wrapper = styled.div`
   position: relative;
   left: 7rem;
   input {
-    height: 1.2rem;
+    height: 1.4rem;
     width: 20rem;
     border: 2px solid #49abcc;
     border-radius: 0.5rem;
@@ -124,8 +124,8 @@ const Wrapper = styled.div`
 }
 
 button {
-  height: 1.5rem;
-  width: 3rem;
+  height: 1.7rem;
+  width: 4rem;
   background-color: #49abcc;
   color: white;
   border: 2px solid #49abcc;
@@ -133,6 +133,7 @@ button {
   position: relative;
   top: 0rem;
   left: 0.2rem;
+  font-size: 1rem;
 }
 
 .bottom-nav-desktop {
@@ -152,7 +153,7 @@ button {
     position: relative;
     text-decoration: none;
     color: white;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
   }
   
   a:before {
@@ -177,13 +178,13 @@ button {
 .login-cart::after {
   content: "${props => props.total}";
   display: inline-block;
-  width: 1.2rem;
+  width: 1.4rem;
   background-color: #49abcc;
   color: white;
   border-radius: 4rem;
   text-align: center;
   position: relative;
-  top: -1.5rem;
+  top: -1.8rem;
   right: 0.7rem;
   font-size: 1rem;
 }

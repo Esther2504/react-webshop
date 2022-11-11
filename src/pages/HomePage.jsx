@@ -186,7 +186,7 @@ transition: all 3s;
 
   .category-container a {
     width: 10rem;
-    height: 10rem;
+    // height: 10rem;
     background-size: 10rem;
   }
 
