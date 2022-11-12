@@ -29,6 +29,12 @@ export default function NavBar() {
         document.querySelector(".search-link").click();
       }
     });
+    return () =>  document.querySelector(".input").removeEventListener("keyup", function (event) {
+      event.preventDefault();
+      if (event.key === 'Enter' && searchterm != "") {
+        document.querySelector(".search-link").click();
+      }
+    });
   }, [searchterm])
 
   return (

@@ -52,6 +52,7 @@ width: 100%;
 background-color: #49abcc;
 color: white;
 padding-top: 2vh;
+margin-top: 2vh;
 `
 
 const LinksWrapper = styled.div`

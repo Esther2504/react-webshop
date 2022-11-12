@@ -15,7 +15,10 @@ const images = importAll(require.context('../assets/images', false, /\.(png|jpe?
 const productimages = importAll(require.context('../assets/images/products', false, /\.(png|jpe?g|svg)$/));
 
 export default function HomePage() {
-  // Fade in content
+
+
+  useEffect(() => {
+      // Fade in content
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -27,10 +30,9 @@ export default function HomePage() {
     )
   })
 
-  useEffect(() => {
     const hiddenElements = document.querySelectorAll('.hidden')
     hiddenElements.forEach((i) => observer.observe(i))
-  }, [observer]);
+  }, []);
 
   return (
     <Wrapper>
@@ -132,7 +134,7 @@ button {
 
 .hidden {
 opacity: 0;
-transition: all 3s;
+transition: all 7s;
 }
 
 .show {

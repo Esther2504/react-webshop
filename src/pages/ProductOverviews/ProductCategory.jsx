@@ -80,13 +80,13 @@ export default function Product() {
               <button style={{ backgroundColor: "green" }} onClick={() => setColor("groen")} />
               <button style={{ backgroundColor: "yellow" }} onClick={() => setColor("geel")} />
               <button style={{ backgroundColor: "gray" }} onClick={() => setColor("grijs")} />
-              <button style={{ backgroundColor: "white", border: "1px solid black" }} onClick={() => setColor("wit")} />
+              <button style={{ backgroundColor: "white" }} onClick={() => setColor("wit")} />
               <button style={{ backgroundColor: "black" }} onClick={() => setColor("zwart")} />
               <button style={{ backgroundColor: "brown" }} onClick={() => setColor("bruin")} />
               <button style={{ backgroundColor: "orange" }} onClick={() => setColor("oranje")} />
               <button style={{ backgroundColor: "pink" }} onClick={() => setColor("roze")} />
               <button style={{ backgroundColor: "purple" }} onClick={() => setColor("paars")} />
-              <button style={{ background: `url(${images['colors.jpg']})`, backgroundSize: "3rem" }} onClick={() => setColor("")} />
+              <button style={{ background: `url(${images['allcolors.png']})`, backgroundSize: "1.7rem", backgroundPosition: "center"}} onClick={() => setColor("")} />
             </div>
           </div>
         </div>
@@ -177,13 +177,16 @@ input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-content: space-between;
     flex-wrap: wrap;
        
     button {
       width: 1.8rem;
       max-width: 100%;
       height: 1.8rem;
-      border-radius: 1rem;
+      // border-radius: 1rem;
+      border: 2px solid black;
+      margin-top: 2px;
     }
   }
 }
