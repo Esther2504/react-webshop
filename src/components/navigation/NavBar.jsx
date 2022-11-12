@@ -63,6 +63,11 @@ const Wrapper = styled.div`
     justify-content: flex-end;
 }
 
+.login-btn {
+  width: 5rem;
+  top: -0.7rem;
+}
+
 .loginpopup {
   border: 1px solid white;
   position: absolute;
